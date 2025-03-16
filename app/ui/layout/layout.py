@@ -12,10 +12,12 @@ from app.ui.page.home_page import HomePage
 from app.ui.page.launcher_page import LauncherPage
 from app.ui.page.config_page import ConfigPage
 from app.config.settings import MODE
+from app.utility.i18n import I18n
 
 class AppLayout(BaseCtkLayout):
     def __init__(self):
         super().__init__()
+        self.i18n = I18n()  # 多言語対応のインスタンスを作成
 
         self.large_test_image = customtkinter.CTkImage(
             Image.open(os.path.join(IMAGE_DIR, "large_test_image.png")),
@@ -40,12 +42,12 @@ class AppLayout(BaseCtkLayout):
 
         # configつけてみたが微妙なので、メニューバーでやる
         button_info_list = [
-            {"name": "home", "text": "ホーム", "icon": self.home_icon},
-            {"name": "launcher", "text": "ランチャー", "icon": self.launcher_icon},
+            {"name": "home", "text": self.i18n.get_text("menu.home"), "icon": self.home_icon},
+            {"name": "launcher", "text": self.i18n.get_text("menu.launcher"), "icon": self.launcher_icon},
             # {"name": "config", "text": "設定", "icon": self.config_icon},
         ]
         self.button_info_list = []
-        # 揮発中はhomeにcustomtkinterのサンプルコード置いておく
+        # 開発モードの場合のみhomeを表示
         for info in button_info_list:
             if info["name"] == "home" and MODE != "DEBUG":
                 continue

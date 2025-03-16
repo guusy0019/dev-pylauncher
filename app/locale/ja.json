@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "home": "ホーム",
+    "launcher": "ランチャー",
+    "settings": "設定",
+    "reload": "リロード(CTRL+R)",
+    "exit": "終了(CTRL+Q)"
+  },
+  "buttons": {
+    "appearance_mode": "外観モード",
+    "scaling": "スケーリング",
+    "theme_color": "テーマカラー"
+  }
+}

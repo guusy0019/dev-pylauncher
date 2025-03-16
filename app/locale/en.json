@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "home": "Home",
+    "launcher": "Launcher",
+    "settings": "Settings",
+    "reload": "Reload(CTRL+R)",
+    "exit": "Exit(CTRL+Q)"
+  },
+  "buttons": {
+    "appearance_mode": "Appearance Mode",
+    "scaling": "Scaling",
+    "theme_color": "Theme Color"
+  }
+}
