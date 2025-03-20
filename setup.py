@@ -1,4 +1,4 @@
-import sys
+
 import os
 from cx_Freeze import setup, Executable
 
@@ -28,7 +28,8 @@ PACKAGES = [
 
 # アセットファイルの指定を詳細に行う
 INCLUDE_FILES = [
-    ("app/assets/", "lib/app/assets/"),  # アセットフォルダ全体をコピー
+    ("app/assets/", "lib/app/assets/"),
+    ("app/locales/", "lib/app/locales/"),
 ]
 
 # Pythonのソースコードファイル名
