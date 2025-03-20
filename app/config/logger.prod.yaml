@@ -1,0 +1,26 @@
+version: 1
+formatters:
+  simple:
+    format: "%(asctime)s-%(name)s-%(levelname)s-%(message)s"
+handlers:
+  error_file_handler:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: simple
+    filename: ./app/logs/error.log
+    maxBytes: 102400 # 100KB
+    backupCount: 5
+    encoding: utf8
+  console_handler:
+    class: logging.StreamHandler
+    level: ERROR
+    formatter: simple
+    stream: ext://sys.stdout
+loggers:
+  launcherLogger:
+    level: ERROR
+    handlers: [error_file_handler, console_handler]
+    propagate: no
+root:
+  level: ERROR
+  handlers: [error_file_handler, console_handler]
