@@ -1,9 +1,10 @@
 import os
 import tkinter as tk
-from PIL import Image
 import customtkinter
+import logging
+from PIL import Image
 
-from app.config.settings import IMAGE_DIR, IMAGE_DIR
+from app.config.settings import IMAGE_DIR
 
 from app.ui.widget.file_dialog_widget import FileDialogWidget
 from app.module.utility.exec_shortcut_utility import ShortcutExecutor
@@ -11,7 +12,7 @@ from app.module.utility.get_shortcut_icon_utility import IconExtractor
 from app.module.application.usecase.launcher_usecase import LauncherUsecase
 from app.module.infrastructure.repository.launcher_repositpry import LauncherRepository
 
-
+logger = logging.getLogger("launcherLogger")
 class LauncherPage(customtkinter.CTkScrollableFrame):
     def __init__(self, master):
         super().__init__(master, corner_radius=0, fg_color="transparent")
@@ -20,18 +21,18 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         self.grid_columnconfigure(2, weight=1)
         self.grid_columnconfigure(3, weight=1)
         self.launcher_repository = LauncherRepository()
+        self.launcher_usecase = LauncherUsecase(self.launcher_repository)
         self.setup()
 
     def setup(self):
+        # ランチャーでファイルダイアログを表示する場合の初期ディレクトリを設定
         if os.name == "nt":
-            init_dir = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
-            if os.path.exists(init_dir):
-                initial_dir = init_dir
-            else:
-                initial_dir = os.path.expanduser("~/Desktop")
-        elif os.name == "posix":
-            initial_dir = os.path.expanduser("~/Applications")
+            candidate_dir = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+            if not os.path.exists(candidate_dir):
+                candidate_dir = os.path.expanduser("~/Desktop")
+            initial_dir = candidate_dir
         else:
+            logger.error(f"Unsupported OS: {os.name}")
             raise ValueError(f"Unsupported OS: {os.name}")
 
         kwargs = {
@@ -160,7 +161,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         launcher_usecase = LauncherUsecase(self.launcher_repository)
 
         if os.path.exists(file_path):
-            launcher_usecase.save_launcher_path(key=app_name, launch_app_path=file_path)
+            launcher_usecase.save_launcher_data(key=app_name, launch_app_path=file_path)
             # textをクリア
             self.file_dialog.textbox.delete(0, tk.END)
             self.update_launcher_list()

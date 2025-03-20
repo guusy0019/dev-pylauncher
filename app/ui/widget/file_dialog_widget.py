@@ -70,10 +70,8 @@ class FileDialogWidget(customtkinter.CTkFrame):
         """
         current_dir = os.path.abspath(os.path.dirname(__file__))
 
-        file_name = self.kwargs.get("file_name", "csvファイル")
-        readable_file_types = self.kwargs.get(
-            "readable_file_types", "*.csv;*.xlsx;*.xls"
-        )
+        file_name = self.kwargs["file_name"]
+        readable_file_types = self.kwargs["readable_file_types"]
         initial_dir = self.kwargs.get("initial_dir", current_dir)
 
         file_path = filedialog.askopenfilename(
@@ -90,4 +88,4 @@ class FileDialogWidget(customtkinter.CTkFrame):
         """
         コマンドボタンが押されたときのコールバック
         """
-        self.kwargs.get("custom_command")()
+        self.kwargs["custom_command"]()
