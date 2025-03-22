@@ -14,5 +14,5 @@ class LauncherRepositoryInterface(ABC):
         pass
 
     @abstractmethod
-    def read_launcher_data(self, *, launcher_path: str) -> dict:
+    def _read_launcher_data(self, *, launcher_path: str) -> dict:
         pass
