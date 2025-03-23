@@ -6,7 +6,6 @@ import customtkinter
 from app.config.settings import THEME_DIR, USER_DATA_PATH
 from app.utility.app_manager import restart_app
 from app.module.application.usecase.userdata_usecase import UserDataUsecase
-from app.module.application.interface.userdata_interface import UserDataRepositoryInterface
 from app.module.infrastructure.repository.userdata_repository import UserDataRepository
 
 logger = logging.getLogger("launcherLogger")

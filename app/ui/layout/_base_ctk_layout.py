@@ -32,6 +32,19 @@ class BaseCtkLayout(customtkinter.CTk):
         self.navigation_frame.grid(row=0, column=0, sticky="nsew")
         self.navigation_frame.grid_rowconfigure(5, weight=1)
 
+        # テーマカラーのウィジェットの配置
+        # テーマカーラがすでに選択されていた場合はそれを使う
+        userdata_usecase = UserDataUsecase(userdata_repository=UserDataRepository())
+        theme_color = userdata_usecase.get_all_user_data(user_data_path=USER_DATA_PATH).get("theme_color")
+        if theme_color:
+            ThemesColorWidget.set_color_theme(theme_color)
+            
+        self.themes_color_menu = ThemesColorWidget(self.navigation_frame)
+        # テーマカラーがすでに選択されていた場合はそれをoptionの初期値にする
+        if theme_color:
+            self.themes_color_menu.set(theme_color)
+        self.themes_color_menu.grid(row=9, column=0, padx=20, pady=(10, 20))
+
         # 外観モードのウィジェットの配置
         self.appearance_mode_menu = AppearanceModeWidget(self.navigation_frame)
         self.appearance_mode_menu.grid(row=7, column=0, padx=20, pady=(10, 20))
@@ -39,19 +52,6 @@ class BaseCtkLayout(customtkinter.CTk):
         # スケーリングのウィジェットの配置
         self.scaling_optionemenu = ScalingOptionWidget(self.navigation_frame)
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
-        
-        # テーマカラーのウィジェットの配置
-        self.themes_color_menu = ThemesColorWidget(self.navigation_frame)
-        # テーマカーラがすでに選択されていた場合はそれを使う
-        userdata_usecase = UserDataUsecase(userdata_repository=UserDataRepository())
-        theme_color = userdata_usecase.get_all_user_data(user_data_path=USER_DATA_PATH).get("theme_color")
-
-        if theme_color:
-            ThemesColorWidget.set_color_theme(theme_color)
-        else:
-            ThemesColorWidget.set_color_theme("blue")
-        self.themes_color_menu.grid(row=9, column=0, padx=20, pady=(10, 20))
-
 
         # 各ページのアイコン画像を取得
         self.home_icon = customtkinter.CTkImage(
