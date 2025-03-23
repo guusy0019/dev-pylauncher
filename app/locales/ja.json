@@ -1,14 +1,24 @@
 {
   "menu": {
-    "home": "ホーム",
-    "launcher": "ランチャー",
     "settings": "設定",
     "reload": "リロード(CTRL+R)",
     "exit": "終了(CTRL+Q)"
   },
-  "buttons": {
-    "appearance_mode": "外観モード",
+  "side_menu": {
+    "home": "ホーム",
+    "launcher": "ランチャー",
+    "systm": "システム",
     "scaling": "スケーリング",
-    "theme_color": "テーマカラー"
+    "theme": "テーマ"
+  },
+  "launch_page_button": {
+    "start": "スタート",
+    "stop": "ストップ",
+    "delete": "削除",
+    "delte_all": "全削除"
+  },
+  "file_dialog": {
+    "select_shortcut": "ショートカットを選択",
+    "save_shortcut": "ショートカットを保存"
   }
 }

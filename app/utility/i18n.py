@@ -7,7 +7,7 @@ from app.config.settings import LOCALE_DIR
 class I18n:
     _instance = None
     _translations: dict[str, dict[str, any]] = {}
-    _current_lang = "ja"  # デフォルト言語
+    _current_lang = "ja"
 
     def __new__(cls):
         if cls._instance is None:

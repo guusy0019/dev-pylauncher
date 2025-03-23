@@ -1,14 +1,22 @@
 {
   "menu": {
-    "home": "Home",
-    "launcher": "Launcher",
     "settings": "Settings",
     "reload": "Reload(CTRL+R)",
     "exit": "Exit(CTRL+Q)"
   },
-  "buttons": {
-    "appearance_mode": "Appearance Mode",
+  "side_menu": {
+    "systm": "System",
     "scaling": "Scaling",
-    "theme_color": "Theme Color"
+    "theme": "Theme"
+  },
+  "launch_page_button": {
+    "start": "Start",
+    "stop": "Stop",
+    "delete": "Delete",
+    "delte_all": "Delete All"
+  },
+  "file_dialog": {
+    "select_shortcut": "Select Shortcut",
+    "save_shortcut": "Save Shortcut"
   }
 }
