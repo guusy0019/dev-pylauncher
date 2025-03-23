@@ -1,3 +1,7 @@
+# 参照先
+
+https://github.com/a13xe/CTkThemesPack
+
 # CTkThemesPack
 
 This repository contains JSON files that define custom color palettes for the [CustomTkinter library](https://github.com/TomSchimansky/CustomTkinter), allowing you to quickly and easily customize the look of your customtkinter-based applications.
