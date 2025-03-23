@@ -1,18 +1,28 @@
 
 import os
+import logging
 import customtkinter
 
-from app.config.settings import THEME_DIR
+from app.config.settings import THEME_DIR, USER_DATA_PATH
 from app.utility.app_manager import restart_app
+from app.module.application.usecase.userdata_usecase import UserDataUsecase
+from app.module.application.interface.userdata_interface import UserDataRepositoryInterface
+from app.module.infrastructure.repository.userdata_repository import UserDataRepository
+
+logger = logging.getLogger("launcherLogger")
 
 
 class ThemesColorWidget(customtkinter.CTkOptionMenu):
+    ctk_default_themes_list = ["blue", "green", "dark-blue"]
+    
     def __init__(self, master, **kwargs):
-        # ctk_default_themes_list=["blue", "green", "dark-blue"],
-        themes_color_list = os.listdir(THEME_DIR)
-        themes_color_list = [
-            theme_color.replace(".json", "") for theme_color in themes_color_list
+
+        ex_themes_color_list = os.listdir(THEME_DIR)
+        ex_themes_color_list = [
+            theme_color.replace(".json", "") for theme_color in ex_themes_color_list
         ]
+        default_themes_color_list = self.ctk_default_themes_list
+        themes_color_list = default_themes_color_list + ex_themes_color_list
         super().__init__(
             master,
             values=themes_color_list,
@@ -20,16 +30,22 @@ class ThemesColorWidget(customtkinter.CTkOptionMenu):
             **kwargs,
         )
 
-    def change_themes_color_event(self, themes_color):
+    def change_themes_color_event(self, theme_color):
         try:
-            customtkinter.set_default_color_theme(f"{THEME_DIR}/{themes_color}.json")
+            self.set_color_theme(theme_color)
+            # themes_colorをユーザーデータに保存
+            user_data_usecase = UserDataUsecase(userdata_repository=UserDataRepository())
+            user_data_usecase.save_user_data(key="theme_color", value=theme_color, user_data_path=USER_DATA_PATH)
             restart_app()
-            print(f"Themes color changed to {themes_color}")
         except Exception as e:
-            print(f"Error: {e}")
-
-
-# なぜうまくいかん？
-# customtkinter.navigation_frameのインスタンスでは変更不可のため、最初にプルダウンからテーマを選ばせる
-# その後、テーマの文字列を保存してインスタンスを再起動するのが必要ぽいね
-# まあ、後回しかな、ただテーマだけは保存しておく
+            logger.error(f"Error change_themes_color_event: {e}")
+            return
+        
+    @classmethod
+    def set_color_theme(cls, theme_color):
+        if theme_color in cls.ctk_default_themes_list:
+            customtkinter.set_default_color_theme(theme_color)
+            logger.info(f"Change themes color: {theme_color}")
+        else:
+            customtkinter.set_default_color_theme(f"{THEME_DIR}/{theme_color}.json")
+            logger.info(f"Change themes color: {theme_color}")

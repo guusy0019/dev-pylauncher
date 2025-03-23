@@ -2,11 +2,13 @@ import os
 import customtkinter
 from PIL import Image
 
-from app.config.settings import IMAGE_DIR, ICON_PATH
+from app.config.settings import IMAGE_DIR, ICON_PATH, USER_DATA_PATH
 from app.ui.layout.menu_layout import MenuLayout
 from app.ui.widget.appearance_mode_widget import AppearanceModeWidget
 from app.ui.widget.scaling_option_widget import ScalingOptionWidget
 from app.ui.widget.themes_color_widget import ThemesColorWidget
+from app.module.application.usecase.userdata_usecase import UserDataUsecase
+from app.module.infrastructure.repository.userdata_repository import UserDataRepository
 
 
 class BaseCtkLayout(customtkinter.CTk):
@@ -40,7 +42,16 @@ class BaseCtkLayout(customtkinter.CTk):
         
         # テーマカラーのウィジェットの配置
         self.themes_color_menu = ThemesColorWidget(self.navigation_frame)
+        # テーマカーラがすでに選択されていた場合はそれを使う
+        userdata_usecase = UserDataUsecase(userdata_repository=UserDataRepository())
+        theme_color = userdata_usecase.get_all_user_data(user_data_path=USER_DATA_PATH).get("theme_color")
+
+        if theme_color:
+            ThemesColorWidget.set_color_theme(theme_color)
+        else:
+            ThemesColorWidget.set_color_theme("blue")
         self.themes_color_menu.grid(row=9, column=0, padx=20, pady=(10, 20))
+
 
         # 各ページのアイコン画像を取得
         self.home_icon = customtkinter.CTkImage(
