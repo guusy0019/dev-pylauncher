@@ -32,9 +32,10 @@ class BaseCtkLayout(customtkinter.CTk):
         self.navigation_frame.grid(row=0, column=0, sticky="nsew")
         self.navigation_frame.grid_rowconfigure(5, weight=1)
 
+        userdata_usecase = UserDataUsecase(userdata_repository=UserDataRepository())
+
         # テーマカラーのウィジェットの配置
         # テーマカーラがすでに選択されていた場合はそれを使う
-        userdata_usecase = UserDataUsecase(userdata_repository=UserDataRepository())
         theme_color = userdata_usecase.get_all_user_data(user_data_path=USER_DATA_PATH).get("theme_color")
         if theme_color:
             ThemesColorWidget.set_color_theme(theme_color)
@@ -47,10 +48,18 @@ class BaseCtkLayout(customtkinter.CTk):
 
         # 外観モードのウィジェットの配置
         self.appearance_mode_menu = AppearanceModeWidget(self.navigation_frame)
+        appearance_mode = userdata_usecase.get_all_user_data(user_data_path=USER_DATA_PATH).get("appearance_mode")
+        if appearance_mode:
+            self.appearance_mode_menu.set(appearance_mode)
+            AppearanceModeWidget.set_appearance_mode(appearance_mode)
         self.appearance_mode_menu.grid(row=7, column=0, padx=20, pady=(10, 20))
 
         # スケーリングのウィジェットの配置
         self.scaling_optionemenu = ScalingOptionWidget(self.navigation_frame)
+        scaling_option = userdata_usecase.get_all_user_data(user_data_path=USER_DATA_PATH).get("scaling_option")
+        if scaling_option:
+            self.scaling_optionemenu.set(scaling_option)
+            ScalingOptionWidget.set_scaling(scaling_option)
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
         # 各ページのアイコン画像を取得
