@@ -35,7 +35,7 @@ class LauncherRepository(LauncherRepositoryInterface):
         launcher_data = FileUtility().read_json_data(launcher_path)
         launcher_data[key] = launch_app_path
         with open(launcher_path, "w") as f:
-            json.dump(launcher_data, f)
+            json.dump(launcher_data, f, indent=2)
         return launcher_data
         
     def delete_launcher_data(self, *, launcher_path : str = LAUNCHER_PATH, key : str) -> dict | None:
