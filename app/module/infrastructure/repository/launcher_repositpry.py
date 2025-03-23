@@ -20,7 +20,7 @@ class LauncherRepository(LauncherRepositoryInterface):
         launcher_data = self._read_launcher_data(launcher_path)
         return launcher_data
     
-    def save_launcher_data(self, *, launcher_path: str = LAUNCHER_PATH, key: str, launcher_app_path: str) -> dict | None:
+    def save_launcher_data(self, *, launcher_path: str = LAUNCHER_PATH, key: str, launch_app_path: str) -> dict | None:
         """ランチャーデータを保存します。
         
         Args:
@@ -32,7 +32,7 @@ class LauncherRepository(LauncherRepositoryInterface):
             dict or None: 保存されたランチャーデータ。失敗した場合はNone
         """
         launcher_data = self._read_launcher_data(launcher_path)
-        launcher_data[key] = launcher_app_path
+        launcher_data[key] = launch_app_path
         with open(launcher_path, "w") as f:
             json.dump(launcher_data, f)
         return launcher_data

@@ -6,7 +6,7 @@ class LauncherRepositoryInterface(ABC):
         pass
     
     @abstractmethod
-    def save_launcher_data(self, *, launcher_path: str, launcher_data: dict) -> None:
+    def save_launcher_data(self, *, launcher_path: str, key: str, launch_app_path: str) -> None:
         pass
 
     @abstractmethod

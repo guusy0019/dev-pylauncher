@@ -9,10 +9,11 @@ from app.config.settings import IMAGE_DIR
 from app.ui.widget.file_dialog_widget import FileDialogWidget
 from app.module.utility.exec_shortcut_utility import ShortcutExecutor
 from app.module.utility.get_shortcut_icon_utility import IconExtractor
-from app.module.application.usecase.launcher_usecase import LauncherUsecase
+from app.module.application.presenter.launcher_presenter import LauncherPresenter
 from app.module.infrastructure.repository.launcher_repositpry import LauncherRepository
 
 logger = logging.getLogger("launcherLogger")
+
 class LauncherPage(customtkinter.CTkScrollableFrame):
     def __init__(self, master):
         super().__init__(master, corner_radius=0, fg_color="transparent")
@@ -21,7 +22,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         self.grid_columnconfigure(2, weight=1)
         self.grid_columnconfigure(3, weight=1)
         self.launcher_repository = LauncherRepository()
-        self.launcher_usecase = LauncherUsecase(self.launcher_repository)
+        self.launcher_presenter = LauncherPresenter(self.launcher_repository)
         self.setup()
 
     def setup(self):
@@ -74,8 +75,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         for widget in self.launcher_list.winfo_children():
             widget.destroy()
 
-        launcher_usecase = LauncherUsecase(self.launcher_repository)
-        all_launcher_dict: dict[str, str] = launcher_usecase.get_all_launcher_path()
+        all_launcher_dict: dict[str, str] = self.launcher_presenter.get_all_launcher_data()
 
         icon_extractor = IconExtractor()
         shortcut_executor = ShortcutExecutor()
@@ -158,10 +158,8 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         # ファイルパスからファイル名を取得
         app_name = os.path.splitext(os.path.basename(file_path))[0]
 
-        launcher_usecase = LauncherUsecase(self.launcher_repository)
-
         if os.path.exists(file_path):
-            launcher_usecase.save_launcher_data(key=app_name, launch_app_path=file_path)
+            self.launcher_presenter.save_launcher_data(key=app_name, launch_app_path=file_path)
             # textをクリア
             self.file_dialog.textbox.delete(0, tk.END)
             self.update_launcher_list()
@@ -170,6 +168,5 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
 
     def delete_launcher(self, key: str):
         """指定したランチャーを削除してリストを更新"""
-        launcher_usecase = LauncherUsecase(self.launcher_repository)
-        launcher_usecase.delete_launcher_path(key=key)
+        self.launcher_presenter.delete_launcher_data(key=key)
         self.update_launcher_list()
