@@ -5,7 +5,7 @@ formatters:
 handlers:
   error_file_handler:
     class: logging.handlers.RotatingFileHandler
-    level: ERROR
+    level: INFO
     formatter: simple
     filename: ./app/logs/error.log
     maxBytes: 102400 # 100KB
@@ -13,14 +13,14 @@ handlers:
     encoding: utf8
   console_handler:
     class: logging.StreamHandler
-    level: ERROR
+    level: INFO
     formatter: simple
     stream: ext://sys.stdout
 loggers:
   launcherLogger:
-    level: ERROR
+    level: INFO
     handlers: [error_file_handler, console_handler]
     propagate: no
 root:
-  level: ERROR
+  level: INFO
   handlers: [error_file_handler, console_handler]
