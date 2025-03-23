@@ -12,7 +12,3 @@ class LauncherRepositoryInterface(ABC):
     @abstractmethod
     def delete_launcher_data(self, *, launcher_path: str, key: str) -> str:
         pass
-
-    @abstractmethod
-    def _read_launcher_data(self, *, launcher_path: str) -> dict:
-        pass
