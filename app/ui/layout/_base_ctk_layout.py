@@ -13,6 +13,13 @@ from app.module.infrastructure.repository.userdata_repository import UserDataRep
 
 class BaseCtkLayout(customtkinter.CTk):
     def __init__(self, **kwargs):
+        
+        # テーマカラーを設定していた場合それを一番最初に読み込みアプリ全体に反映させる
+        userdata_usecase = UserDataUsecase(userdata_repository=UserDataRepository())
+        theme_color = userdata_usecase.get_all_user_data(user_data_path=USER_DATA_PATH).get("theme_color")
+        if theme_color:
+            ThemesColorWidget.set_color_theme(theme_color)
+
         super().__init__(**kwargs)
 
         self.title("pylauncher")
@@ -32,14 +39,7 @@ class BaseCtkLayout(customtkinter.CTk):
         self.navigation_frame.grid(row=0, column=0, sticky="nsew")
         self.navigation_frame.grid_rowconfigure(5, weight=1)
 
-        userdata_usecase = UserDataUsecase(userdata_repository=UserDataRepository())
-
         # テーマカラーのウィジェットの配置
-        # テーマカーラがすでに選択されていた場合はそれを使う
-        theme_color = userdata_usecase.get_all_user_data(user_data_path=USER_DATA_PATH).get("theme_color")
-        if theme_color:
-            ThemesColorWidget.set_color_theme(theme_color)
-            
         self.themes_color_menu = ThemesColorWidget(self.navigation_frame)
         # テーマカラーがすでに選択されていた場合はそれをoptionの初期値にする
         if theme_color:
