@@ -23,18 +23,73 @@ class HomePage(customtkinter.CTkFrame):
             font=customtkinter.CTkFont(size=24, weight="bold")
         )
         self.title_label.grid(row=0, column=0, padx=20, pady=(20, 10))
+
+        # グリッドレイアウトのデモセクション
+        self.grid_demo_label = customtkinter.CTkLabel(
+            self.scrollable_frame,
+            text="Grid Layout Demo",
+            font=customtkinter.CTkFont(size=18, weight="bold")
+        )
+        self.grid_demo_label.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="w")
+
+        # グリッドデモ用のフレーム
+        self.grid_demo_frame = customtkinter.CTkFrame(self.scrollable_frame)
+        self.grid_demo_frame.grid(row=2, column=0, padx=20, pady=10, sticky="ew")
         
+        # 行と列の設定
+        for i in range(3):
+            self.grid_demo_frame.columnconfigure(i, weight=1, minsize=100)
+        
+        # weightパラメータの挙動を示す行設定
+        self.grid_demo_frame.rowconfigure(0, weight=0)  # 固定サイズ
+        self.grid_demo_frame.rowconfigure(1, weight=1)  # 拡大縮小する
+        self.grid_demo_frame.rowconfigure(2, weight=2)  # 行1の2倍の比率で拡大縮小
+        
+        # 各種配置パターンのボタン
+        # 1. 基本配置
+        btn1 = customtkinter.CTkButton(self.grid_demo_frame, text="基本配置")
+        btn1.grid(row=0, column=0)
+        
+        # 2. パディング付き
+        btn2 = customtkinter.CTkButton(self.grid_demo_frame, text="外側余白")
+        btn2.grid(row=0, column=1, padx=20, pady=10)
+        
+        # 3. 非対称パディング
+        btn3 = customtkinter.CTkButton(self.grid_demo_frame, text="非対称余白")
+        btn3.grid(row=0, column=2, padx=(5, 20), pady=(5, 15))
+        
+        # 4. スティッキーN（上寄せ）
+        btn4 = customtkinter.CTkButton(self.grid_demo_frame, text="上寄せ(n)")
+        btn4.grid(row=1, column=0, sticky="n")
+        
+        # 5. スティッキーEW（左右に伸縮）
+        btn5 = customtkinter.CTkButton(self.grid_demo_frame, text="左右伸縮(ew)")
+        btn5.grid(row=1, column=1, sticky="ew")
+        
+        # 6. スティッキーNSEW（全方向に伸縮）
+        btn6 = customtkinter.CTkButton(self.grid_demo_frame, text="全方向伸縮(nsew)")
+        btn6.grid(row=1, column=2, sticky="nsew")
+        
+        # 7. 複数のセルにまたがる
+        btn7 = customtkinter.CTkButton(self.grid_demo_frame, text="複数セル(rowspan, columnspan)")
+        btn7.grid(row=2, column=0, columnspan=2, rowspan=1, sticky="nsew")
+        
+        # 8. 内部パディングを持つボタン
+        btn8 = customtkinter.CTkButton(self.grid_demo_frame, text="内部余白")
+        btn8.grid(row=2, column=2, ipadx=10, ipady=10, sticky="nsew")
+        
+
         # セクション1: 基本的なウィジェット
         self.section1_label = customtkinter.CTkLabel(
             self.scrollable_frame, 
             text="1. Basic Widgets", 
             font=customtkinter.CTkFont(size=18, weight="bold")
         )
-        self.section1_label.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="w")
+        self.section1_label.grid(row=3, column=0, padx=20, pady=(20, 10), sticky="w")
         
         # ボタンのフレーム
         self.button_frame = customtkinter.CTkFrame(self.scrollable_frame)
-        self.button_frame.grid(row=2, column=0, padx=20, pady=10, sticky="ew")
+        self.button_frame.grid(row=4, column=0, padx=20, pady=10, sticky="ew")
         self.button_frame.grid_columnconfigure((0, 1, 2, 3), weight=1)
         
         # 通常のボタン
@@ -71,11 +126,11 @@ class HomePage(customtkinter.CTkFrame):
             text="2. Input Widgets", 
             font=customtkinter.CTkFont(size=18, weight="bold")
         )
-        self.section2_label.grid(row=3, column=0, padx=20, pady=(20, 10), sticky="w")
+        self.section2_label.grid(row=5, column=0, padx=20, pady=(20, 10), sticky="w")
         
         # 入力ウィジェットのフレーム
         self.input_frame = customtkinter.CTkFrame(self.scrollable_frame)
-        self.input_frame.grid(row=4, column=0, padx=20, pady=10, sticky="ew")
+        self.input_frame.grid(row=6, column=0, padx=20, pady=10, sticky="ew")
         self.input_frame.grid_columnconfigure((0, 1), weight=1)
         
         # エントリー
@@ -101,11 +156,11 @@ class HomePage(customtkinter.CTkFrame):
             text="3. Selection Widgets", 
             font=customtkinter.CTkFont(size=18, weight="bold")
         )
-        self.section3_label.grid(row=5, column=0, padx=20, pady=(20, 10), sticky="w")
+        self.section3_label.grid(row=7, column=0, padx=20, pady=(20, 10), sticky="w")
         
         # 選択ウィジェットのフレーム
         self.selection_frame = customtkinter.CTkFrame(self.scrollable_frame)
-        self.selection_frame.grid(row=6, column=0, padx=20, pady=10, sticky="ew")
+        self.selection_frame.grid(row=8, column=0, padx=20, pady=10, sticky="ew")
         self.selection_frame.grid_columnconfigure((0, 1, 2), weight=1)
         
         # チェックボックス
@@ -145,11 +200,11 @@ class HomePage(customtkinter.CTkFrame):
             text="4. Dropdown & Sliders", 
             font=customtkinter.CTkFont(size=18, weight="bold")
         )
-        self.section4_label.grid(row=7, column=0, padx=20, pady=(20, 10), sticky="w")
+        self.section4_label.grid(row=9, column=0, padx=20, pady=(20, 10), sticky="w")
         
         # ドロップダウンとスライダーのフレーム
         self.dropdown_frame = customtkinter.CTkFrame(self.scrollable_frame)
-        self.dropdown_frame.grid(row=8, column=0, padx=20, pady=10, sticky="ew")
+        self.dropdown_frame.grid(row=10, column=0, padx=20, pady=10, sticky="ew")
         self.dropdown_frame.grid_columnconfigure((0, 1), weight=1)
         
         # コンボボックス
@@ -184,11 +239,11 @@ class HomePage(customtkinter.CTkFrame):
             text="5. TabView & ScrollableFrame", 
             font=customtkinter.CTkFont(size=18, weight="bold")
         )
-        self.section5_label.grid(row=9, column=0, padx=20, pady=(20, 10), sticky="w")
+        self.section5_label.grid(row=11, column=0, padx=20, pady=(20, 10), sticky="w")
         
         # タブビュー
         self.tabview = customtkinter.CTkTabview(self.scrollable_frame, width=400, height=200)
-        self.tabview.grid(row=10, column=0, padx=20, pady=10, sticky="ew")
+        self.tabview.grid(row=12, column=0, padx=20, pady=10, sticky="ew")
         self.tabview.add("Tab 1")
         self.tabview.add("Tab 2")
         self.tabview.add("Tab 3")
@@ -217,11 +272,11 @@ class HomePage(customtkinter.CTkFrame):
             text="6. Dialogs & Windows", 
             font=customtkinter.CTkFont(size=18, weight="bold")
         )
-        self.section6_label.grid(row=11, column=0, padx=20, pady=(20, 10), sticky="w")
+        self.section6_label.grid(row=13, column=0, padx=20, pady=(20, 10), sticky="w")
         
         # ダイアログのフレーム
         self.dialog_frame = customtkinter.CTkFrame(self.scrollable_frame)
-        self.dialog_frame.grid(row=12, column=0, padx=20, pady=10, sticky="ew")
+        self.dialog_frame.grid(row=14, column=0, padx=20, pady=10, sticky="ew")
         self.dialog_frame.grid_columnconfigure((0, 1, 2), weight=1)
         
         # ダイアログボタン
@@ -242,12 +297,11 @@ class HomePage(customtkinter.CTkFrame):
         )
         self.toplevel_button.grid(row=0, column=2, padx=10, pady=10)
         
-        # 最後に余白を追加
         self.final_padding = customtkinter.CTkLabel(
             self.scrollable_frame, text=""
         )
-        self.final_padding.grid(row=13, column=0, padx=20, pady=20)
-
+        self.final_padding.grid(row=15, column=0, padx=20, pady=20)
+        
     def button_callback(self):
         print("Button clicked!")
         
