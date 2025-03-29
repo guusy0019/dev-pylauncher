@@ -4,7 +4,8 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 4
   },
-
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "solid",
   "python.terminal.activateEnvironment": true,
   "python.terminal.activateEnvInCurrentTerminal": true,
   "python.testing.unittestArgs": ["-v", "-s", "./app", "-p", "*_test.py"],
