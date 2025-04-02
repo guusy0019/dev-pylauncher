@@ -12,3 +12,8 @@ class LauncherRepositoryInterface(ABC):
     @abstractmethod
     def delete_launcher_data(self, *, launcher_path: str, key: str) -> str:
         pass
+
+    @abstractmethod
+    def save_launcher_workspace(self, *, file_name: str, launcher_data: dict) -> dict | None:
+        pass
+

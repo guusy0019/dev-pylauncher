@@ -25,3 +25,9 @@ def test_delete_launcher_data(launcher_repository):
     usecase.delete_launcher_data(launcher_path=LAUNCHER_PATH, key="test_key")
     data = usecase.get_all_launcher_data(launcher_path=LAUNCHER_PATH)
     assert data == {}
+
+def test_get_all_workspace_file_names(launcher_repository):
+    usecase = LauncherUsecase(launcher_repository=launcher_repository)
+    file_names = usecase.get_all_workspace_file_names()
+    assert file_names != []
+

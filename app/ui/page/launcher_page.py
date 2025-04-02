@@ -7,7 +7,8 @@ from PIL import Image
 from app.config.settings import IMAGE_DIR
 
 from app.ui.widget.file_dialog_widget import FileDialogWidget
-from app.module.utility.exec_shortcut_utility import ShortcutExecutor
+from app.ui.widget.save_launcher_list_widget import SaveLauncherListWidget
+from app.module.utility.shortcut_excuter import ShortcutExecutor
 from app.module.utility.get_shortcut_icon_utility import IconExtractor
 from app.module.application.presenter.launcher_presenter import LauncherPresenter
 from app.module.infrastructure.repository.launcher_repositpry import LauncherRepository
@@ -25,7 +26,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         self.launcher_presenter = LauncherPresenter(self.launcher_repository)
         self.setup()
 
-    def setup(self):
+    def setup(self, workspace_file_paths: list[str] = None):
         # ランチャーでファイルダイアログを表示する場合の初期ディレクトリを設定
         if os.name == "nt":
             candidate_dir = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
@@ -51,21 +52,30 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
             row=0, column=0, columnspan=4, padx=10, pady=20, sticky="ew"
         )
 
-        self.utility_frame = customtkinter.CTkFrame(
-            self, corner_radius=0, fg_color="transparent"
-        )
-        self.utility_frame.grid(
-            row=1, column=0, columnspan=4, padx=10, pady=10, sticky="ew"
-        )
+        # self.utility_frame = customtkinter.CTkFrame(
+        #     self, corner_radius=0, fg_color="transparent"
+        # )
+        # self.utility_frame.grid(
+        #     row=1, column=0, columnspan=4, padx=10, pady=10, sticky="ew"
+        # )
 
+        # ランチャーapp表示用のフレーム
         self.launcher_list = customtkinter.CTkFrame(
             self, corner_radius=0, fg_color="transparent"
         )
         self.launcher_list.grid(
             row=2, column=0, columnspan=4, padx=10, pady=20, sticky="ew"
         )
+
         # checkboxを使用して、アプリケーションの一括操作を実装したいが、ムズイのでいったん保留
-        self.add_utility_buttons()
+        # self.add_utility_buttons()
+
+        if workspace_file_paths is None:
+        # work space保存用のフレーム
+            self.save_launcher_list_as_workspace = SaveLauncherListWidget(master=self)
+            self.save_launcher_list_as_workspace.grid(
+                row=3, column=0, columnspan=4, padx=10, pady=20, sticky="ew"
+            )
 
         self.update_launcher_list()
 
@@ -103,7 +113,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
                 image=ctk_image,
                 compound="left",
                 width=250,
-                command=lambda p=shortcut_path: shortcut_executor.execute_shortcut(
+                command=lambda p=shortcut_path: shortcut_executor.exec_shortcut_by_shortcut_path(
                     shortcut_path=p
                 ),
                 anchor="center",

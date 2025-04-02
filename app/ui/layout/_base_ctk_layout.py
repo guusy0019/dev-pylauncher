@@ -4,6 +4,7 @@ from PIL import Image
 
 from app.config.settings import IMAGE_DIR, ICON_PATH, USER_DATA_PATH
 from app.ui.layout.menu_layout import MenuLayout
+from app.ui.widget.workspace_frame_widget import WorkspaceFrameWidget
 from app.ui.widget.appearance_mode_widget import AppearanceModeWidget
 from app.ui.widget.scaling_option_widget import ScalingOptionWidget
 from app.ui.widget.themes_color_widget import ThemesColorWidget
@@ -48,6 +49,10 @@ class BaseCtkLayout(customtkinter.CTk):
         self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.navigation_frame.grid(row=0, column=0, sticky="nsew")
         self.navigation_frame.grid_rowconfigure(5, weight=1)
+
+        # ワークスペースのフレームを配置
+        self.workspace_frame = WorkspaceFrameWidget(self.navigation_frame)
+        self.workspace_frame.grid(row=5, column=0, sticky="nsew")
 
         # テーマカラーのウィジェットの配置
         self.themes_color_menu = ThemesColorWidget(self.navigation_frame)

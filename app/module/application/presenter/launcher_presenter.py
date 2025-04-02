@@ -2,6 +2,7 @@
 import logging
 from app.config.settings import LAUNCHER_PATH
 from app.module.application.interface.launcher_interface import LauncherRepositoryInterface
+from app.module.application.usecase.launcher_usecase import LauncherUsecase
 
 logger = logging.getLogger("launcherLogger")
 
@@ -35,3 +36,31 @@ class LauncherPresenter:
         except Exception as e:
             logger.error(f"error delete_launcher_data: error: {e}, launcher_path: {self.launcher_path}, key: {key}")
             return
+        
+    def save_launcher_workspace(self, *, file_name: str, launcher_data: dict) -> dict | None:
+        if file_name == "":
+            return {
+                "status": "error",
+                "message": "ワークスペース名は必須です。入力してください"
+            }
+        
+        launcher_usecase = LauncherUsecase()
+        workspace_file_names = launcher_usecase.get_all_workspace_file_names()
+        if file_name in workspace_file_names:
+            return {
+                "status": "warning",
+                "message": "ワークスペース名は既に存在します。別の名前を入力してください"
+            }
+        
+        try:
+            self.launcher_repository.save_launcher_workspace(file_name=file_name, launcher_data=launcher_data)
+            return {
+                "status": "success",
+                "message": f"ワークスペースを保存しました。ワークスペース名: {file_name}"
+            }
+        except Exception as e:
+            logger.error(f"error save_launcher_workspace: error: {e}, file_name: {file_name}, launcher_data: {launcher_data}")
+            return {
+                "status": "error",
+                "message": "ワークスペースを保存できませんでした"
+            }

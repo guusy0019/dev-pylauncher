@@ -19,18 +19,8 @@ class AppLayout(BaseCtkLayout):
         super().__init__()
         self.i18n = I18n()  # 多言語対応のインスタンスを作成
 
-        self.large_test_image = customtkinter.CTkImage(
-            Image.open(os.path.join(IMAGE_DIR, "large_test_image.png")),
-            size=(500, 150),
-        )
-        self.image_icon_image = customtkinter.CTkImage(
-            Image.open(os.path.join(IMAGE_DIR, "image_icon_light.png")),
-            size=(20, 20)
-        )
-
-        self.home_frame = HomePage(self, self.large_test_image, self.image_icon_image)
+        self.home_frame = HomePage(self)
         self.launcher_frame = LauncherPage(self)
-
         self.config_frame = ConfigPage(self)
 
         # 将来的にここでworkspaceを管理できればいいかなと
@@ -42,8 +32,8 @@ class AppLayout(BaseCtkLayout):
 
         # configつけてみたが微妙なので、メニューバーでやる
         button_info_list = [
-            {"name": "home", "text": self.i18n.get_text("menu.home"), "icon": self.home_icon},
-            {"name": "launcher", "text": self.i18n.get_text("menu.launcher"), "icon": self.launcher_icon},
+            {"name": "home", "text": self.i18n.get_text("side_menu.home"), "icon": self.home_icon},
+            {"name": "launcher", "text": self.i18n.get_text("side_menu.launcher"), "icon": self.launcher_icon},
             # {"name": "config", "text": "設定", "icon": self.config_icon},
         ]
         self.button_info_list = []

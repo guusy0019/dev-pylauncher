@@ -11,8 +11,8 @@ def set_app(application):
     global app
     app = application
 
-def restart_app():
-    if MODE == "DEBUG":
+def restart_app(reload_modules: bool = True):
+    if MODE == "DEBUG" and reload_modules:
         _restart_app()
 
         
@@ -46,8 +46,8 @@ def _restart_app():
             try:
                 importlib.reload(sys.modules[mod_name])
                 print(f"モジュール {mod_name} を再読み込みしました")
-            except:
-                print(f"モジュール {mod_name} の再読み込みに失敗しました")
+            except Exception as e:
+                print(f"モジュール {mod_name} の再読み込みに失敗しました: {str(e)}")
         
         # 新しいインスタンスを作成
         from app.ui.layout.layout import AppLayout

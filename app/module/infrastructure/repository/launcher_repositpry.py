@@ -1,7 +1,8 @@
 import json
+import os
 import logging
 
-from app.config.settings import LAUNCHER_PATH
+from app.config.settings import LAUNCHER_PATH, LAUNCHER_WORKSPACE_DIR
 from app.module.utility.file_utility import FileUtility
 from app.module.application.interface.launcher_interface import LauncherRepositoryInterface
 
@@ -44,3 +45,10 @@ class LauncherRepository(LauncherRepositoryInterface):
         with open(launcher_path, "w") as f:
             json.dump(launcher_data, f)
         return launcher_data
+
+    def save_launcher_workspace(self, *, file_name: str, launcher_data: dict) -> dict | None:
+        workspace_path = os.path.join(LAUNCHER_WORKSPACE_DIR, f"{file_name}.json")
+        with open(workspace_path, "w") as f:
+            json.dump(launcher_data, f, indent=2)
+        return launcher_data
+

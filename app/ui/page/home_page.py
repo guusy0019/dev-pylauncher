@@ -6,10 +6,18 @@ from app.utility.i18n import I18n
 
 
 class HomePage(customtkinter.CTkFrame):
-    def __init__(self, master, large_test_image, image_icon_image):
+    def __init__(self, master):
         super().__init__(master, corner_radius=0, fg_color="transparent")
         self.grid_columnconfigure(0, weight=1)
         self.i18n = I18n()
+        self.large_test_image = customtkinter.CTkImage(
+            Image.open(os.path.join(IMAGE_DIR, "large_test_image.png")),
+            size=(500, 150),
+        )
+        self.image_icon_image = customtkinter.CTkImage(
+            Image.open(os.path.join(IMAGE_DIR, "image_icon_light.png")),
+            size=(20, 20)
+        )
 
         # スクロール可能なフレームを作成
         self.scrollable_frame = customtkinter.CTkScrollableFrame(self, width=800, height=700)
@@ -100,7 +108,7 @@ class HomePage(customtkinter.CTkFrame):
         
         # 画像付きボタン
         self.button_2 = customtkinter.CTkButton(
-            self.button_frame, text="Image Button", image=image_icon_image, 
+            self.button_frame, text="Image Button", image=self.image_icon_image, 
             compound="right", command=self.button_callback
         )
         self.button_2.grid(row=0, column=1, padx=10, pady=10)
