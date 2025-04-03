@@ -53,6 +53,8 @@ class SaveLauncherListWidget(customtkinter.CTkFrame):
             self.notification_label.configure(text=self.textbox_text, text_color="blue")
             self.notification_label.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
             self.textbox.delete(0, tk.END)
+            # こうするしかないのか？
+            self.master.master.master.master.workspace_frame.setup()
 
         else:
             self.textbox_text = val["message"]

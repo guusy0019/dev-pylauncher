@@ -51,7 +51,14 @@ class LauncherPresenter:
                 "status": "warning",
                 "message": "ワークスペース名は既に存在します。別の名前を入力してください"
             }
-        
+
+        file_name_length = len(file_name)
+        if file_name_length > 15:
+            return {
+                "status": "warning",
+                "message": "ワークスペース名は15文字以内で入力してください"
+            }
+
         try:
             self.launcher_repository.save_launcher_workspace(file_name=file_name, launcher_data=launcher_data)
             return {
