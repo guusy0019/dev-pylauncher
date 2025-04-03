@@ -1,7 +1,5 @@
-import os
 import customtkinter
-from PIL import Image
-from app.config.settings import IMAGE_DIR, USER_DATA_PATH
+from app.config.settings import USER_DATA_PATH
 from app.config.color_settings import (
     TEXT_COLOR,
     HOVER_COLOR,
@@ -40,6 +38,7 @@ class AppLayout(BaseCtkLayout):
             ScalingOptionWidget.set_scaling(scaling_option)
         super().__init__()
 
+        self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
         self.i18n = I18n()  # 多言語対応のインスタンスを作成
 
@@ -51,34 +50,33 @@ class AppLayout(BaseCtkLayout):
         self.menu_layout = MenuLayout(self)
         self.menu_layout.grid(row=0, column=0, sticky="ew")
 
-        self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
-        self.navigation_frame.grid(row=0, column=0, sticky="nsew")
-        self.navigation_frame.grid_rowconfigure(5, weight=1)
+        self.side_navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
+        self.side_navigation_frame.grid(row=0, column=0, sticky="nsew")
+        self.side_navigation_frame.grid_rowconfigure(5, weight=1)
 
         # ワークスペースのフレームを配置
-        self.workspace_frame = WorkspaceFrameWidget(self.navigation_frame)
+        self.workspace_frame = WorkspaceFrameWidget(self.side_navigation_frame)
         self.workspace_frame.grid(row=5, column=0, sticky="nsew")
 
         # テーマカラーのウィジェットの配置
-        self.themes_color_menu = ThemesColorWidget(self.navigation_frame)
+        self.themes_color_menu = ThemesColorWidget(self.side_navigation_frame)
         # テーマカラーがすでに選択されていた場合はそれをoptionの初期値にする
         if theme_color:
             self.themes_color_menu.set(theme_color)
         self.themes_color_menu.grid(row=9, column=0, padx=20, pady=(10, 20))
 
         # 外観モードのウィジェットの配置
-        self.appearance_mode_menu = AppearanceModeWidget(self.navigation_frame)
+        self.appearance_mode_menu = AppearanceModeWidget(self.side_navigation_frame)
         if appearance_mode:
             self.appearance_mode_menu.set(appearance_mode)
         self.appearance_mode_menu.grid(row=7, column=0, padx=20, pady=(10, 20))
 
         # スケーリングのウィジェットの配置
-        self.scaling_optionemenu = ScalingOptionWidget(self.navigation_frame)
+        self.scaling_optionemenu = ScalingOptionWidget(self.side_navigation_frame)
         if scaling_option:
             self.scaling_optionemenu.set(scaling_option)
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
-        # 将来的にここでworkspaceを管理できればいいかなと
         self.frames = {
             "home": self.home_frame,
             "launcher": self.launcher_frame,
@@ -102,7 +100,7 @@ class AppLayout(BaseCtkLayout):
 
         for i, info in enumerate(self.button_info_list, start=1):
             button = customtkinter.CTkButton(
-                self.navigation_frame,
+                self.side_navigation_frame,
                 corner_radius=0,
                 height=40,
                 border_spacing=10,
@@ -136,5 +134,5 @@ class AppLayout(BaseCtkLayout):
         for button_name, button in self.buttons.items():
             # 選択したボタン以外は透明に
             button.configure(
-                fg_color=FG_COLOR if button_name == name else "transparent"
+                fg_color="transparent" if button_name == name else "transparent"
             )
