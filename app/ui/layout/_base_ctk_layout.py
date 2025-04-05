@@ -3,6 +3,7 @@ import customtkinter
 from PIL import Image
 
 from app.config.settings import IMAGE_DIR, ICON_PATH
+from app.utility.app_manager import restart_app, exit_app
 
 
 class BaseCtkLayout(customtkinter.CTk):
@@ -14,6 +15,9 @@ class BaseCtkLayout(customtkinter.CTk):
 
         # iconの設定
         self.iconbitmap(ICON_PATH)
+
+        self.bind('<Control-r>', lambda event: self.reload_window())
+        self.bind('<Control-q>', lambda event: self.exit())
 
         # 各ページのアイコン画像を取得
         self.home_icon = customtkinter.CTkImage(
@@ -32,5 +36,11 @@ class BaseCtkLayout(customtkinter.CTk):
             dark_image=Image.open(os.path.join(IMAGE_DIR, "config", "config_dark.png")),
             size=(20, 20),
         )
+
+    def reload_window(self):
+        restart_app()
+
+    def exit(self):
+        exit_app()
         
 
