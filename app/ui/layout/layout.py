@@ -56,8 +56,8 @@ class AppLayout(BaseCtkLayout):
         self.config_frame = ConfigPage(self)
 
         # メニューバーを配置
-        self.menu_layout = MenuLayout(self)
-        self.menu_layout.grid(row=0, column=0, sticky="ew")
+        # self.menu_layout = MenuLayout(self)
+        # self.menu_layout.grid(row=0, column=0, sticky="ew")
 
         self.side_navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.side_navigation_frame.grid(row=0, column=0, sticky="nsew")
@@ -96,7 +96,7 @@ class AppLayout(BaseCtkLayout):
         button_info_list = [
             {"name": "home", "text": self.i18n.get_text("side_menu.home"), "icon": self.home_icon},
             {"name": "launcher", "text": self.i18n.get_text("side_menu.launcher"), "icon": self.launcher_icon},
-            # {"name": "config", "text": "設定", "icon": self.config_icon},
+            {"name": "config", "text": "設定", "icon": self.config_icon},
         ]
         self.button_info_list = []
         # 開発モードの場合のみhomeを表示
@@ -122,7 +122,7 @@ class AppLayout(BaseCtkLayout):
                 command=lambda name=info["name"]: self.select_frame_by_name(name),
             )
             button.grid(
-                row=i if info["name"] != "config" else i + 3, 
+                row=i, 
                 column=0, 
                 sticky="ew"
                 )
