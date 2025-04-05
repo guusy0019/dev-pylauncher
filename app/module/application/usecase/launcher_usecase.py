@@ -16,14 +16,20 @@ class LauncherUsecase:
     def get_all_launcher_data(self, *, launcher_path: str) -> list[dict]:
         return self.launcher_repository.get_all_launcher_data(launcher_path=launcher_path)
 
-    def save_launcher_data(self, *, launcher_path: str, key: str, launcher_app_path: str) -> None:
-        return self.launcher_repository.save_launcher_data(launcher_path=launcher_path, key=key, launcher_app_path=launcher_app_path)
+    def save_launcher_data(self, *, launcher_path: str | None, key: str, launch_app_path: str) -> None:
+        return self.launcher_repository.save_launcher_data(launcher_path=launcher_path, key=key, launch_app_path=launch_app_path)
     
     def delete_launcher_data(self, *, launcher_path: str, key: str) -> str:
         return self.launcher_repository.delete_launcher_data(launcher_path=launcher_path, key=key)
     
     def save_launcher_workspace(self, *, file_name: str, launcher_data: dict) -> dict | None:
         return self.launcher_repository.save_launcher_workspace(file_name=file_name, launcher_data=launcher_data)
+    
+    def rename_workspace_file(self, *, old_path: str, new_path: str) -> str | None:
+        return self.launcher_repository.rename_workspace_file(old_path=old_path, new_path=new_path)
+    
+    def delete_workspace_file(self, *, file_path: str) -> None:
+        return self.launcher_repository.delete_workspace_file(file_path=file_path)
     
     @staticmethod
     def get_all_workspace_file_names() -> list[str]:

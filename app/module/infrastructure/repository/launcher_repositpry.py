@@ -28,7 +28,7 @@ class LauncherRepository(LauncherRepositoryInterface):
         Args:
             launcher_path (str): ランチャーのデータを保存しているパス
             key (str): アプリケーション名
-            launcher_app_path (str): ランチャーに保存するアプリ単体のパス
+            launch_app_path (str): ランチャーに保存するアプリ単体のパス
             
         Returns:
             dict or None: 保存されたランチャーデータ。失敗した場合はNone
@@ -51,4 +51,13 @@ class LauncherRepository(LauncherRepositoryInterface):
         with open(workspace_path, "w") as f:
             json.dump(launcher_data, f, indent=2)
         return launcher_data
-
+    
+    def rename_workspace_file(self, *, old_path: str, new_path: str) -> str | None:
+        """拡張子含むフルパスを指定してファイル名を変更する"""
+        FileUtility().rename_file(old_path, new_path)
+        return new_path
+    
+    def delete_workspace_file(self, *, file_path: str) -> str |None:
+        """拡張子含むフルパスを指定してファイルを削除する"""
+        FileUtility().delete_file(file_path)
+        return file_path

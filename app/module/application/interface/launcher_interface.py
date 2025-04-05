@@ -17,3 +17,11 @@ class LauncherRepositoryInterface(ABC):
     def save_launcher_workspace(self, *, file_name: str, launcher_data: dict) -> dict | None:
         pass
 
+    @abstractmethod
+    def rename_workspace_file(self, *, old_path: str, new_path: str) -> str | None:
+        pass
+
+    @abstractmethod
+    def delete_workspace_file(self, *, file_path: str) -> str | None:
+        pass
+

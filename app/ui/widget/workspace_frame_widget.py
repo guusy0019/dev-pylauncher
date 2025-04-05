@@ -2,7 +2,7 @@ import os
 import logging
 import customtkinter
 
-from app.utility.toplevel_window import ToplevelWindow
+from app.ui.widget.notification_window_widget import NotificationWindowWidget
 from app.config.settings import LAUNCHER_WORKSPACE_DIR
 from app.module.application.usecase.launcher_usecase import LauncherUsecase
 
@@ -14,7 +14,7 @@ class WorkspaceFrameWidget(customtkinter.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
         self.textbox_text = ""
-        self.toplevel_window = ToplevelWindow(master)
+        self.toplevel_window = NotificationWindowWidget(master)
         self.setup()    
 
     def setup(self):

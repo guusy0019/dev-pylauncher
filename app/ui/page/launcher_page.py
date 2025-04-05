@@ -8,6 +8,7 @@ from app.config.settings import IMAGE_DIR
 
 from app.ui.widget.file_dialog_widget import FileDialogWidget
 from app.ui.widget.save_launcher_list_widget import SaveLauncherListWidget
+from app.ui.widget.workspace_utility_widget import WorkspaceUtilityWidget
 from app.module.application.usecase.launcher_usecase import LauncherUsecase
 from app.module.utility.shortcut_excuter import ShortcutExecutor
 from app.module.utility.get_shortcut_icon_utility import IconExtractor
@@ -55,13 +56,10 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         
         # ワークスペースの場合は、ワークスペースのファイル名を表示
         if self.workspace_file_path is not None:
-            app_name = LauncherUsecase.get_app_name_from_shortcut_path(self.workspace_file_path)
-            self.workspace_label = customtkinter.CTkLabel(
-                self,
-                text=f"ワークスペース名: {app_name}",
-                font=customtkinter.CTkFont(size=18, weight="bold"),
+            workspace_utility_widget = WorkspaceUtilityWidget(master=self, workspace_file_path=self.workspace_file_path)
+            workspace_utility_widget.grid(
+                row=1, column=0, padx=10, pady=10, sticky="ew"
             )
-            self.workspace_label.grid(row=1, column=0, padx=20, sticky="ew")
 
         # self.utility_frame = customtkinter.CTkFrame(
         #     self, corner_radius=0, fg_color="transparent"

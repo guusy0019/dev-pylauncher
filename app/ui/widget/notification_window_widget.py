@@ -1,6 +1,6 @@
 import customtkinter
 
-class ToplevelWindow:
+class NotificationWindowWidget:
     def __init__(self, master: customtkinter.CTk):
         self.master = master
 
