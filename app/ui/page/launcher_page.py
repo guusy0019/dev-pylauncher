@@ -14,6 +14,7 @@ from app.module.utility.shortcut_excuter import ShortcutExecutor
 from app.module.utility.get_shortcut_icon_utility import IconExtractor
 from app.module.application.presenter.launcher_presenter import LauncherPresenter
 from app.module.infrastructure.repository.launcher_repositpry import LauncherRepository
+from app.utility.i18n import I18n
 
 logger = logging.getLogger("launcherLogger")
 
@@ -25,6 +26,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         self.launcher_repository = LauncherRepository()
         self.launcher_presenter = LauncherPresenter(self.launcher_repository)
 
+        self.i18n = I18n()
         self.workspace_file_path = workspace_file_path
         self.setup()
 
@@ -40,10 +42,10 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
             raise ValueError(f"Unsupported OS: {os.name}")
 
         kwargs = {
-            "placeholder_text": "ランチャーに保存するショートカットを選択してください",
-            "button_text": "ショートカットを選択",
+            "placeholder_text": self.i18n.get_text("launch_page.file_dialog_placeholder"),
+            "button_text": self.i18n.get_text("launch_page.file_dialog_select_button"),
             "custom_command": self.button_select_callback,
-            "command_button_text": "ショートカットを保存",
+            "command_button_text": self.i18n.get_text("launch_page.file_dialog_save_button"),
             "file_name": "ショートカット",
             "readable_file_types": "*.lnk",
             "initial_dir": initial_dir,
@@ -141,7 +143,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
             # ショートカットの削除ボタン
             delete_button = customtkinter.CTkButton(
                 self.launcher_list,
-                text="削除",
+                text=self.i18n.get_text("launch_page.delete"),
                 image=delete_image,
                 compound="left",
                 command=lambda k=shortcut_name: self.delete_launcher(k),

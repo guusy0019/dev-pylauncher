@@ -1,0 +1,53 @@
+{
+  "menu": {
+    "settings": "Einstellungen",
+    "reload": "Neu laden (STRG+R)",
+    "exit": "Beenden (STRG+Q)"
+  },
+  "side_menu": {
+    "home": "Startseite",
+    "launcher": "Launcher",
+    "settings": "Einstellungen",
+    "systm": "System",
+    "scaling": "Skalierung",
+    "theme": "Design"
+  },
+  "launch_page": {
+    "start": "Start",
+    "stop": "Stopp",
+    "delete": "Löschen",
+    "delte_all": "Alles löschen",
+
+    "file_dialog_select_button": "Verknüpfung auswählen",
+    "file_dialog_save_button": "Verknüpfung speichern",
+    "file_dialog_placeholder": "Bitte wählen Sie eine Verknüpfung zum Speichern im Launcher",
+
+    "save_workspace_widget_placeholder": "Geben Sie einen Namen zum Speichern als Arbeitsbereich ein",
+    "save_workspace_widget_save_button": "Speichern",
+    "save_workspace_widget_success_label": "Arbeitsbereich gespeichert",
+
+    "save_launcher_list_label": "Arbeitsbereich-Name",
+    "save_launcher_list_rename_button": "Arbeitsbereich umbenennen",
+    "save_launcher_list_delete_button": "Arbeitsbereich löschen",
+    "save_launcher_list_dialog_title": "Arbeitsbereich umbenennen",
+    "save_launcher_list_dialog_placeholder": "Bitte geben Sie den Namen des Arbeitsbereichs ein",
+    "save_launcher_list_dialog_confirm_title": "Arbeitsbereich löschen",
+    "save_launcher_list_dialog_confirm_label": "Sind Sie sicher, dass Sie löschen möchten?\nDiese Aktion kann nicht rückgängig gemacht werden.",
+    "save_launcher_list_dialog_cancel_button": "Abbrechen",
+    "save_launcher_list_dialog_delete_button": "Löschen",
+
+    "presenter_error_blank": "Arbeitsbereich-Name ist erforderlich. Bitte geben Sie einen Namen ein",
+    "presenter_error_duplicate": "Arbeitsbereich-Name existiert bereits. Bitte geben Sie einen anderen Namen ein",
+    "presenter_error_max_length": "Der Arbeitsbereich-Name sollte maximal 15 Zeichen lang sein",
+    "presenter_error": "Arbeitsbereich konnte nicht gespeichert werden",
+    "presenter_success": "Arbeitsbereich gespeichert. Arbeitsbereich-Name: ",
+    "presenter_rename_success": "Arbeitsbereich-Name geändert. Arbeitsbereich-Name: ",
+    "presenter_rename_error": "Arbeitsbereich konnte nicht geändert werden",
+    "presenter_delete_success": "Arbeitsbereich gelöscht.",
+    "presenter_delete_error": "Arbeitsbereich konnte nicht gelöscht werden"
+  },
+  "config_page": {
+    "reload": "Neu laden (STRG+R)",
+    "exit": "Beenden (STRG+Q)"
+  }
+}

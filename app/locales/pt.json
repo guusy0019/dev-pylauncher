@@ -1,0 +1,53 @@
+{
+  "menu": {
+    "settings": "Configurações",
+    "reload": "Recarregar (CTRL+R)",
+    "exit": "Sair (CTRL+Q)"
+  },
+  "side_menu": {
+    "home": "Início",
+    "launcher": "Lançador",
+    "settings": "Configurações",
+    "systm": "Sistema",
+    "scaling": "Escala",
+    "theme": "Tema"
+  },
+  "launch_page": {
+    "start": "Iniciar",
+    "stop": "Parar",
+    "delete": "Excluir",
+    "delte_all": "Excluir tudo",
+
+    "file_dialog_select_button": "Selecionar atalho",
+    "file_dialog_save_button": "Salvar atalho",
+    "file_dialog_placeholder": "Por favor, selecione um atalho para salvar no lançador",
+
+    "save_workspace_widget_placeholder": "Digite um nome para salvar como espaço de trabalho",
+    "save_workspace_widget_save_button": "Salvar",
+    "save_workspace_widget_success_label": "Espaço de trabalho salvo",
+
+    "save_launcher_list_label": "Nome do espaço de trabalho",
+    "save_launcher_list_rename_button": "Renomear espaço de trabalho",
+    "save_launcher_list_delete_button": "Excluir espaço de trabalho",
+    "save_launcher_list_dialog_title": "Renomear espaço de trabalho",
+    "save_launcher_list_dialog_placeholder": "Por favor, digite o nome do espaço de trabalho",
+    "save_launcher_list_dialog_confirm_title": "Excluir espaço de trabalho",
+    "save_launcher_list_dialog_confirm_label": "Tem certeza que deseja excluir?\nEsta ação não pode ser desfeita.",
+    "save_launcher_list_dialog_cancel_button": "Cancelar",
+    "save_launcher_list_dialog_delete_button": "Excluir",
+
+    "presenter_error_blank": "O nome do espaço de trabalho é obrigatório. Por favor, digite um nome",
+    "presenter_error_duplicate": "O nome do espaço de trabalho já existe. Por favor, digite um nome diferente",
+    "presenter_error_max_length": "O nome do espaço de trabalho deve ter menos de 15 caracteres",
+    "presenter_error": "Não foi possível salvar o espaço de trabalho",
+    "presenter_success": "Espaço de trabalho salvo. Nome do espaço de trabalho: ",
+    "presenter_rename_success": "Nome do espaço de trabalho alterado. Nome do espaço de trabalho: ",
+    "presenter_rename_error": "Não foi possível alterar o espaço de trabalho",
+    "presenter_delete_success": "Espaço de trabalho excluído.",
+    "presenter_delete_error": "Não foi possível excluir o espaço de trabalho"
+  },
+  "config_page": {
+    "reload": "Recarregar (CTRL+R)",
+    "exit": "Sair (CTRL+Q)"
+  }
+}

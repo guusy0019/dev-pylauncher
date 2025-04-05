@@ -1,0 +1,53 @@
+{
+  "menu": {
+    "settings": "Paramètres",
+    "reload": "Recharger (CTRL+R)",
+    "exit": "Quitter (CTRL+Q)"
+  },
+  "side_menu": {
+    "home": "Accueil",
+    "launcher": "Lanceur",
+    "settings": "Paramètres",
+    "systm": "Système",
+    "scaling": "Mise à l'échelle",
+    "theme": "Thème"
+  },
+  "launch_page": {
+    "start": "Démarrer",
+    "stop": "Arrêter",
+    "delete": "Supprimer",
+    "delte_all": "Tout supprimer",
+
+    "file_dialog_select_button": "Sélectionner un raccourci",
+    "file_dialog_save_button": "Enregistrer le raccourci",
+    "file_dialog_placeholder": "Veuillez sélectionner un raccourci à enregistrer dans le lanceur",
+
+    "save_workspace_widget_placeholder": "Entrez un nom pour enregistrer comme espace de travail",
+    "save_workspace_widget_save_button": "Enregistrer",
+    "save_workspace_widget_success_label": "Espace de travail enregistré",
+
+    "save_launcher_list_label": "Nom de l'espace de travail",
+    "save_launcher_list_rename_button": "Renommer l'espace de travail",
+    "save_launcher_list_delete_button": "Supprimer l'espace de travail",
+    "save_launcher_list_dialog_title": "Renommer l'espace de travail",
+    "save_launcher_list_dialog_placeholder": "Veuillez saisir le nom de l'espace de travail",
+    "save_launcher_list_dialog_confirm_title": "Supprimer l'espace de travail",
+    "save_launcher_list_dialog_confirm_label": "Êtes-vous sûr de vouloir supprimer ?\nCette action ne peut pas être annulée.",
+    "save_launcher_list_dialog_cancel_button": "Annuler",
+    "save_launcher_list_dialog_delete_button": "Supprimer",
+
+    "presenter_error_blank": "Le nom de l'espace de travail est obligatoire. Veuillez saisir un nom",
+    "presenter_error_duplicate": "Le nom de l'espace de travail existe déjà. Veuillez saisir un nom différent",
+    "presenter_error_max_length": "Le nom de l'espace de travail doit contenir moins de 15 caractères",
+    "presenter_error": "Impossible d'enregistrer l'espace de travail",
+    "presenter_success": "Espace de travail enregistré. Nom de l'espace de travail : ",
+    "presenter_rename_success": "Nom de l'espace de travail modifié. Nom de l'espace de travail : ",
+    "presenter_rename_error": "Impossible de modifier l'espace de travail",
+    "presenter_delete_success": "Espace de travail supprimé.",
+    "presenter_delete_error": "Impossible de supprimer l'espace de travail"
+  },
+  "config_page": {
+    "reload": "Recharger (CTRL+R)",
+    "exit": "Quitter (CTRL+Q)"
+  }
+}

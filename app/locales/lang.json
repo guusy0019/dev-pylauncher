@@ -1,4 +1,12 @@
 {
   "ja": "日本語",
-  "en": "English"
+  "en": "English",
+  "fr": "Français",
+  "de": "Deutsch",
+  "es": "Español",
+  "it": "Italiano",
+  "pt": "Português",
+  "ru": "Русский",
+  "zh": "中文",
+  "ko": "한국어"
 }

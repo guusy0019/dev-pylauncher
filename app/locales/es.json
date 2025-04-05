@@ -1,0 +1,53 @@
+{
+  "menu": {
+    "settings": "Configuración",
+    "reload": "Recargar (CTRL+R)",
+    "exit": "Salir (CTRL+Q)"
+  },
+  "side_menu": {
+    "home": "Inicio",
+    "launcher": "Lanzador",
+    "settings": "Configuración",
+    "systm": "Sistema",
+    "scaling": "Escalado",
+    "theme": "Tema"
+  },
+  "launch_page": {
+    "start": "Iniciar",
+    "stop": "Detener",
+    "delete": "Eliminar",
+    "delte_all": "Eliminar todo",
+
+    "file_dialog_select_button": "Seleccionar acceso directo",
+    "file_dialog_save_button": "Guardar acceso directo",
+    "file_dialog_placeholder": "Por favor, seleccione un acceso directo para guardar en el lanzador",
+
+    "save_workspace_widget_placeholder": "Introduzca un nombre para guardar como espacio de trabajo",
+    "save_workspace_widget_save_button": "Guardar",
+    "save_workspace_widget_success_label": "Espacio de trabajo guardado",
+
+    "save_launcher_list_label": "Nombre del espacio de trabajo",
+    "save_launcher_list_rename_button": "Renombrar espacio de trabajo",
+    "save_launcher_list_delete_button": "Eliminar espacio de trabajo",
+    "save_launcher_list_dialog_title": "Renombrar espacio de trabajo",
+    "save_launcher_list_dialog_placeholder": "Por favor, introduzca el nombre del espacio de trabajo",
+    "save_launcher_list_dialog_confirm_title": "Eliminar espacio de trabajo",
+    "save_launcher_list_dialog_confirm_label": "¿Está seguro de que desea eliminar?\nEsta acción no se puede deshacer.",
+    "save_launcher_list_dialog_cancel_button": "Cancelar",
+    "save_launcher_list_dialog_delete_button": "Eliminar",
+
+    "presenter_error_blank": "El nombre del espacio de trabajo es obligatorio. Por favor, introduzca un nombre",
+    "presenter_error_duplicate": "El nombre del espacio de trabajo ya existe. Por favor, introduzca un nombre diferente",
+    "presenter_error_max_length": "El nombre del espacio de trabajo debe tener menos de 15 caracteres",
+    "presenter_error": "No se pudo guardar el espacio de trabajo",
+    "presenter_success": "Espacio de trabajo guardado. Nombre del espacio de trabajo: ",
+    "presenter_rename_success": "Nombre del espacio de trabajo cambiado. Nombre del espacio de trabajo: ",
+    "presenter_rename_error": "No se pudo cambiar el espacio de trabajo",
+    "presenter_delete_success": "Espacio de trabajo eliminado.",
+    "presenter_delete_error": "No se pudo eliminar el espacio de trabajo"
+  },
+  "config_page": {
+    "reload": "Recargar (CTRL+R)",
+    "exit": "Salir (CTRL+Q)"
+  }
+}

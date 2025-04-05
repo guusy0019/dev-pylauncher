@@ -2,6 +2,7 @@ import os
 import customtkinter
 from PIL import Image
 
+from app.utility.i18n import I18n
 from app.config.settings import IMAGE_DIR, ICON_PATH
 from app.utility.app_manager import restart_app, exit_app
 
@@ -18,6 +19,9 @@ class BaseCtkLayout(customtkinter.CTk):
 
         self.bind('<Control-r>', lambda event: self.reload_window())
         self.bind('<Control-q>', lambda event: self.exit())
+
+        # 多言語対応のインスタンスを作成
+        self.i18n = I18n()
 
         # 各ページのアイコン画像を取得
         self.home_icon = customtkinter.CTkImage(

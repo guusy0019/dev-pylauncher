@@ -35,20 +35,20 @@ class LauncherRepository(LauncherRepositoryInterface):
         """
         launcher_data = FileUtility().read_json_data(launcher_path)
         launcher_data[key] = launch_app_path
-        with open(launcher_path, "w") as f:
+        with open(launcher_path, "w", encoding="utf-8") as f:
             json.dump(launcher_data, f, indent=2)
         return launcher_data
         
     def delete_launcher_data(self, *, launcher_path : str = LAUNCHER_PATH, key : str) -> dict | None:
         launcher_data = FileUtility().read_json_data(launcher_path)
         launcher_data.pop(key)
-        with open(launcher_path, "w") as f:
-            json.dump(launcher_data, f)
+        with open(launcher_path, "w", encoding="utf-8") as f:
+            json.dump(launcher_data, f, indent=2)
         return launcher_data
 
     def save_launcher_workspace(self, *, file_name: str, launcher_data: dict) -> dict | None:
         workspace_path = os.path.join(LAUNCHER_WORKSPACE_DIR, f"{file_name}.json")
-        with open(workspace_path, "w") as f:
+        with open(workspace_path, "w", encoding="utf-8") as f:
             json.dump(launcher_data, f, indent=2)
         return launcher_data
     

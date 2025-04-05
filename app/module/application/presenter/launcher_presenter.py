@@ -3,6 +3,7 @@ import logging
 from app.config.settings import LAUNCHER_PATH
 from app.module.application.interface.launcher_interface import LauncherRepositoryInterface
 from app.module.application.usecase.launcher_usecase import LauncherUsecase
+from app.utility.i18n import I18n
 
 logger = logging.getLogger("launcherLogger")
 
@@ -10,7 +11,7 @@ class LauncherPresenter:
 
     def __init__(self, launcher_repository: LauncherRepositoryInterface):
         self.launcher_usecase = LauncherUsecase(launcher_repository=launcher_repository)
-
+        self.i18n = I18n()
     def get_all_launcher_data(self, launcher_path: str | None = None) -> list[dict]:
         try:
             if launcher_path is None:
@@ -53,7 +54,7 @@ class LauncherPresenter:
         if file_name == "":
             return {
                 "status": "error",
-                "message": "ワークスペース名は必須です。入力してください"
+                "message": self.i18n.get_text("launch_page.presenter_error_blank")
             }
         
         launcher_usecase = LauncherUsecase()
@@ -61,27 +62,27 @@ class LauncherPresenter:
         if file_name in workspace_file_names:
             return {
                 "status": "warning",
-                "message": "ワークスペース名は既に存在します。別の名前を入力してください"
+                "message": self.i18n.get_text("launch_page.presenter_error_duplicate")
             }
 
         file_name_length = len(file_name)
         if file_name_length > 15:
             return {
                 "status": "warning",
-                "message": "ワークスペース名は15文字以内で入力してください"
+                "message": self.i18n.get_text("launch_page.presenter_error_max_length")
             }
 
         try:
             self.launcher_usecase.save_launcher_workspace(file_name=file_name, launcher_data=launcher_data)
             return {
                 "status": "success",
-                "message": f"ワークスペースを保存しました。ワークスペース名: {file_name}"
+                "message": self.i18n.get_text("launch_page.presenter_success") + file_name
             }
         except Exception as e:
             logger.error(f"error save_launcher_workspace: error: {e}, file_name: {file_name}, launcher_data: {launcher_data}")
             return {
                 "status": "error",
-                "message": "ワークスペースを保存できませんでした"
+                "message": self.i18n.get_text("launch_page.presenter_error")
             }
         
     def rename_workspace_file(self, *, old_path: str, new_path: str) -> dict:
@@ -92,13 +93,13 @@ class LauncherPresenter:
             logger.info(f"rename file. renamed_file_path: {renamed_workspace_file_path}")
             return {
                 "status": "success",
-                "message": f"ワークスペース名を{workspace_name}に変更しました"
+                "message": self.i18n.get_text("launch_page.presenter_rename_success") + workspace_name
             }
         except Exception as e:
             logger.error(f"error rename_workspace_file: error: {e}, old_path: {old_path}, new_path: {new_path}")
             return {
                 "status": "error",
-                "message": "ワークスペースを変更できませんでした"
+                "message": self.i18n.get_text("launch_page.presenter_rename_error")
             }
         
     def delete_workspace_file(self, *, file_path: str) -> dict:
@@ -107,12 +108,12 @@ class LauncherPresenter:
             logger.info(f"deleted_file_path: {deleted_file_path}")
             return {
                 "status": "success",
-                "message": "ワークスペースを削除しました。"
+                "message": self.i18n.get_text("launch_page.presenter_delete_success")
             }
         except Exception as e:
             logger.error(f"error delete_workspace_file: error: {e}, file_path: {file_path}")
             return {
                 "status": "error",
-                "message": "ワークスペースを削除できませんでした"
+                "message": self.i18n.get_text("launch_page.presenter_delete_error")
             }
         

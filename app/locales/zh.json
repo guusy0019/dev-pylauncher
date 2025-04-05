@@ -1,0 +1,53 @@
+{
+  "menu": {
+    "settings": "设置",
+    "reload": "重新加载(CTRL+R)",
+    "exit": "退出(CTRL+Q)"
+  },
+  "side_menu": {
+    "home": "首页",
+    "launcher": "启动器",
+    "settings": "设置",
+    "systm": "系统",
+    "scaling": "缩放",
+    "theme": "主题"
+  },
+  "launch_page": {
+    "start": "开始",
+    "stop": "停止",
+    "delete": "删除",
+    "delte_all": "全部删除",
+
+    "file_dialog_select_button": "选择快捷方式",
+    "file_dialog_save_button": "保存快捷方式",
+    "file_dialog_placeholder": "请选择要保存到启动器的快捷方式",
+
+    "save_workspace_widget_placeholder": "输入要保存为工作区的名称",
+    "save_workspace_widget_save_button": "保存",
+    "save_workspace_widget_success_label": "工作区已保存",
+
+    "save_launcher_list_label": "工作区名称",
+    "save_launcher_list_rename_button": "重命名工作区",
+    "save_launcher_list_delete_button": "删除工作区",
+    "save_launcher_list_dialog_title": "重命名工作区",
+    "save_launcher_list_dialog_placeholder": "请输入工作区名称",
+    "save_launcher_list_dialog_confirm_title": "删除工作区",
+    "save_launcher_list_dialog_confirm_label": "确定要删除吗？\n此操作无法撤消。",
+    "save_launcher_list_dialog_cancel_button": "取消",
+    "save_launcher_list_dialog_delete_button": "删除",
+
+    "presenter_error_blank": "工作区名称是必填项。请输入名称",
+    "presenter_error_duplicate": "工作区名称已存在。请输入其他名称",
+    "presenter_error_max_length": "工作区名称应少于15个字符",
+    "presenter_error": "无法保存工作区",
+    "presenter_success": "工作区已保存。工作区名称：",
+    "presenter_rename_success": "工作区名称已更改。工作区名称：",
+    "presenter_rename_error": "无法更改工作区",
+    "presenter_delete_success": "工作区已删除。",
+    "presenter_delete_error": "无法删除工作区"
+  },
+  "config_page": {
+    "reload": "重新加载(CTRL+R)",
+    "exit": "退出(CTRL+Q)"
+  }
+}

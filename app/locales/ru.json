@@ -1,0 +1,53 @@
+{
+  "menu": {
+    "settings": "Настройки",
+    "reload": "Перезагрузить (CTRL+R)",
+    "exit": "Выход (CTRL+Q)"
+  },
+  "side_menu": {
+    "home": "Главная",
+    "launcher": "Лаунчер",
+    "settings": "Настройки",
+    "systm": "Система",
+    "scaling": "Масштабирование",
+    "theme": "Тема"
+  },
+  "launch_page": {
+    "start": "Запуск",
+    "stop": "Остановить",
+    "delete": "Удалить",
+    "delte_all": "Удалить все",
+
+    "file_dialog_select_button": "Выбрать ярлык",
+    "file_dialog_save_button": "Сохранить ярлык",
+    "file_dialog_placeholder": "Пожалуйста, выберите ярлык для сохранения в лаунчере",
+
+    "save_workspace_widget_placeholder": "Введите имя для сохранения как рабочей области",
+    "save_workspace_widget_save_button": "Сохранить",
+    "save_workspace_widget_success_label": "Рабочая область сохранена",
+
+    "save_launcher_list_label": "Имя рабочей области",
+    "save_launcher_list_rename_button": "Переименовать рабочую область",
+    "save_launcher_list_delete_button": "Удалить рабочую область",
+    "save_launcher_list_dialog_title": "Переименовать рабочую область",
+    "save_launcher_list_dialog_placeholder": "Пожалуйста, введите имя рабочей области",
+    "save_launcher_list_dialog_confirm_title": "Удалить рабочую область",
+    "save_launcher_list_dialog_confirm_label": "Вы уверены, что хотите удалить?\nЭто действие нельзя отменить.",
+    "save_launcher_list_dialog_cancel_button": "Отмена",
+    "save_launcher_list_dialog_delete_button": "Удалить",
+
+    "presenter_error_blank": "Имя рабочей области обязательно. Пожалуйста, введите имя",
+    "presenter_error_duplicate": "Имя рабочей области уже существует. Пожалуйста, введите другое имя",
+    "presenter_error_max_length": "Имя рабочей области должно содержать менее 15 символов",
+    "presenter_error": "Не удалось сохранить рабочую область",
+    "presenter_success": "Рабочая область сохранена. Имя рабочей области: ",
+    "presenter_rename_success": "Имя рабочей области изменено. Имя рабочей области: ",
+    "presenter_rename_error": "Не удалось изменить рабочую область",
+    "presenter_delete_success": "Рабочая область удалена.",
+    "presenter_delete_error": "Не удалось удалить рабочую область"
+  },
+  "config_page": {
+    "reload": "Перезагрузить (CTRL+R)",
+    "exit": "Выход (CTRL+Q)"
+  }
+}

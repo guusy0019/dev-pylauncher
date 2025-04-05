@@ -1,0 +1,53 @@
+{
+  "menu": {
+    "settings": "Impostazioni",
+    "reload": "Ricarica (CTRL+R)",
+    "exit": "Esci (CTRL+Q)"
+  },
+  "side_menu": {
+    "home": "Home",
+    "launcher": "Launcher",
+    "settings": "Impostazioni",
+    "systm": "Sistema",
+    "scaling": "Scala",
+    "theme": "Tema"
+  },
+  "launch_page": {
+    "start": "Avvia",
+    "stop": "Ferma",
+    "delete": "Elimina",
+    "delte_all": "Elimina tutto",
+
+    "file_dialog_select_button": "Seleziona collegamento",
+    "file_dialog_save_button": "Salva collegamento",
+    "file_dialog_placeholder": "Seleziona un collegamento da salvare nel launcher",
+
+    "save_workspace_widget_placeholder": "Inserisci un nome da salvare come area di lavoro",
+    "save_workspace_widget_save_button": "Salva",
+    "save_workspace_widget_success_label": "Area di lavoro salvata",
+
+    "save_launcher_list_label": "Nome area di lavoro",
+    "save_launcher_list_rename_button": "Rinomina area di lavoro",
+    "save_launcher_list_delete_button": "Elimina area di lavoro",
+    "save_launcher_list_dialog_title": "Rinomina area di lavoro",
+    "save_launcher_list_dialog_placeholder": "Inserisci il nome dell'area di lavoro",
+    "save_launcher_list_dialog_confirm_title": "Elimina area di lavoro",
+    "save_launcher_list_dialog_confirm_label": "Sei sicuro di voler eliminare?\nQuesta azione non può essere annullata.",
+    "save_launcher_list_dialog_cancel_button": "Annulla",
+    "save_launcher_list_dialog_delete_button": "Elimina",
+
+    "presenter_error_blank": "Il nome dell'area di lavoro è obbligatorio. Inserisci un nome",
+    "presenter_error_duplicate": "Il nome dell'area di lavoro esiste già. Inserisci un nome diverso",
+    "presenter_error_max_length": "Il nome dell'area di lavoro deve contenere meno di 15 caratteri",
+    "presenter_error": "Impossibile salvare l'area di lavoro",
+    "presenter_success": "Area di lavoro salvata. Nome area di lavoro: ",
+    "presenter_rename_success": "Nome dell'area di lavoro modificato. Nome area di lavoro: ",
+    "presenter_rename_error": "Impossibile modificare l'area di lavoro",
+    "presenter_delete_success": "Area di lavoro eliminata.",
+    "presenter_delete_error": "Impossibile eliminare l'area di lavoro"
+  },
+  "config_page": {
+    "reload": "Ricarica (CTRL+R)",
+    "exit": "Esci (CTRL+Q)"
+  }
+}

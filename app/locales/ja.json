@@ -7,18 +7,47 @@
   "side_menu": {
     "home": "ホーム",
     "launcher": "ランチャー",
+    "settings": "設定",
     "systm": "システム",
     "scaling": "スケーリング",
     "theme": "テーマ"
   },
-  "launch_page_button": {
+  "launch_page": {
     "start": "スタート",
     "stop": "ストップ",
     "delete": "削除",
-    "delte_all": "全削除"
+    "delte_all": "全削除",
+
+    "file_dialog_select_button": "ショートカットを選択",
+    "file_dialog_save_button": "ショートカットを保存",
+    "file_dialog_placeholder": "ランチャーに保存するショートカットを選択してください",
+
+    "save_workspace_widget_placeholder": "ワークスペースとして保存する名前を入力してください",
+    "save_workspace_widget_save_button": "保存",
+    "save_workspace_widget_success_label": "ワークスペースを保存しました",
+
+    "save_launcher_list_label": "ワークスペース名",
+    "save_launcher_list_rename_button": "ワークスペース名を変更",
+    "save_launcher_list_delete_button": "ワークスペースを削除",
+    "save_launcher_list_dialog_title": "ワークスペース名を変更",
+    "save_launcher_list_dialog_placeholder": "ワークスペース名を入力してください",
+    "save_launcher_list_dialog_confirm_title": "ワークスペースの削除",
+    "save_launcher_list_dialog_confirm_label": "削除してもよろしいですか？\nこの操作は元に戻せません。",
+    "save_launcher_list_dialog_cancel_button": "キャンセル",
+    "save_launcher_list_dialog_delete_button": "削除",
+
+    "presenter_error_blank": "ワークスペース名は必須です。入力してください",
+    "presenter_error_duplicate": "ワークスペース名は既に存在します。別の名前を入力してください",
+    "presenter_error_max_length": "ワークスペース名は15文字以内で入力してください",
+    "presenter_error": "ワークスペースを保存できませんでした",
+    "presenter_success": "ワークスペースを保存しました。ワークスペース名: ",
+    "presenter_rename_success": "ワークスペース名を変更しました。ワークスペース名: ",
+    "presenter_rename_error": "ワークスペースを変更できませんでした",
+    "presenter_delete_success": "ワークスペースを削除しました。",
+    "presenter_delete_error": "ワークスペースを削除できませんでした"
   },
-  "file_dialog": {
-    "select_shortcut": "ショートカットを選択",
-    "save_shortcut": "ショートカットを保存"
+  "config_page": {
+    "reload": "リロード(CTRL+R)",
+    "exit": "終了(CTRL+Q)"
   }
 }

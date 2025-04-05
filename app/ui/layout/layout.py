@@ -7,7 +7,6 @@ from app.config.color_settings import (
     FG_COLOR,
 )
 from app.config.settings import MODE
-from app.utility.i18n import I18n
 from app.ui.layout._base_ctk_layout import BaseCtkLayout
 from app.ui.page.home_page import HomePage
 from app.ui.page.launcher_page import LauncherPage
@@ -44,7 +43,6 @@ class AppLayout(BaseCtkLayout):
 
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
-        self.i18n = I18n()  # 多言語対応のインスタンスを作成
         
         # 現在選択されているページを追跡するための変数
         self.current_selected_page = None
@@ -96,7 +94,7 @@ class AppLayout(BaseCtkLayout):
         button_info_list = [
             {"name": "home", "text": self.i18n.get_text("side_menu.home"), "icon": self.home_icon},
             {"name": "launcher", "text": self.i18n.get_text("side_menu.launcher"), "icon": self.launcher_icon},
-            {"name": "config", "text": "設定", "icon": self.config_icon},
+            {"name": "config", "text": self.i18n.get_text("side_menu.settings"), "icon": self.config_icon},
         ]
         self.button_info_list = []
         # 開発モードの場合のみhomeを表示

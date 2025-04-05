@@ -6,6 +6,7 @@ from app.module.infrastructure.repository.launcher_repositpry import LauncherRep
 from app.module.application.presenter.launcher_presenter import LauncherPresenter
 from app.module.application.usecase.launcher_usecase import LauncherUsecase
 from app.config.settings import LAUNCHER_WORKSPACE_DIR
+from app.utility.i18n import I18n
 
 logger = logging.getLogger("launcherLogger")
 
@@ -17,7 +18,8 @@ class WorkspaceUtilityWidget(customtkinter.CTkFrame):
         self.launcher_repository = LauncherRepository()
         self.launcher_presenter = LauncherPresenter(launcher_repository=self.launcher_repository)
         self.launcher_usecase = LauncherUsecase()
-        
+        self.i18n = I18n()
+
         self.app_name = LauncherUsecase.get_app_name_from_shortcut_path(self.workspace_file_path)
         
         self.notiification_text = ""
@@ -32,28 +34,29 @@ class WorkspaceUtilityWidget(customtkinter.CTkFrame):
     def setup(self):
         self.workspace_label = customtkinter.CTkLabel(
             self,
-            text=f"ワークスペース名: {self.app_name}",
+            text=f"{self.i18n.get_text('launch_page.save_launcher_list_label')}: {self.app_name}",
             font=customtkinter.CTkFont(size=15, weight="bold"),
         )
         self.workspace_label.grid(row=0, column=0, padx=20, sticky="ew")
         
         self.rename_workspace_button = customtkinter.CTkButton(
             self,
-            text="ワークスペース名を変更",
+            text=self.i18n.get_text("launch_page.save_launcher_list_rename_button"),
             command=self.rename_workspace_button_callback,
         )
         self.rename_workspace_button.grid(row=0, column=1, padx=10)
             
         self.delete_workspace_button = customtkinter.CTkButton(
             self,
-            text="ワークスペースを削除",
+            text=self.i18n.get_text("launch_page.save_launcher_list_delete_button"),
             command=self.delete_workspace_button_callback,
         )
         self.delete_workspace_button.grid(row=0, column=2, padx=10)
 
     def rename_workspace_button_callback(self):
         dialog = customtkinter.CTkInputDialog(
-            title="ワークスペース名を変更", text="ワークスペース名を入力してください"
+            title=self.i18n.get_text("launch_page.save_launcher_list_dialog_title"), 
+            text=self.i18n.get_text("launch_page.save_launcher_list_dialog_placeholder")
         )
         new_name = dialog.get_input()
         
@@ -71,7 +74,7 @@ class WorkspaceUtilityWidget(customtkinter.CTkFrame):
             self.workspace_file_path = new_workspace_file_path
             
             self.app_name = new_name
-            self.workspace_label.configure(text=f"ワークスペース名: {self.app_name}")
+            self.workspace_label.configure(text=f"{self.i18n.get_text('launch_page.save_launcher_list_label')}: {self.app_name}")
             
             self.notiification_text = val["message"]
             self.notification_label.configure(text=self.notiification_text, text_color="blue")
@@ -94,7 +97,7 @@ class WorkspaceUtilityWidget(customtkinter.CTkFrame):
         
         confirm_label = customtkinter.CTkLabel(
             self.confirm_dialog,
-            text=f"ワークスペース「{self.app_name}」を削除してもよろしいですか？\nこの操作は元に戻せません。",
+            text=f"[{self.app_name}] {self.i18n.get_text('launch_page.save_launcher_list_dialog_confirm_label')}",
             wraplength=350
         )
         confirm_label.pack(pady=20)
@@ -104,14 +107,14 @@ class WorkspaceUtilityWidget(customtkinter.CTkFrame):
         
         cancel_button = customtkinter.CTkButton(
             button_frame,
-            text="キャンセル",
+            text=self.i18n.get_text("launch_page.save_launcher_list_dialog_cancel_button"),
             command=self.confirm_dialog.destroy
         )
         cancel_button.pack(side="left", padx=20)
 
         delete_button = customtkinter.CTkButton(
             button_frame,
-            text="削除",
+            text=self.i18n.get_text("launch_page.save_launcher_list_dialog_delete_button"),
             fg_color="red",
             hover_color="darkred",
             command=self.confirm_delete
