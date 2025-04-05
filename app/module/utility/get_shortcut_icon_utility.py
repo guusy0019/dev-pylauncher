@@ -1,3 +1,4 @@
+import logging
 import win32com.client
 import win32gui
 import win32ui
@@ -8,6 +9,7 @@ from PIL import Image
 import tkinter as tk
 from PIL import Image, ImageTk
 
+logger = logging.getLogger("launcherLogger")
 
 class IconExtractor:
     def __init__(self, icon_size=(32, 32)):
@@ -15,18 +17,19 @@ class IconExtractor:
         self.ico_x = icon_size[0]
         self.ico_y = icon_size[1]
 
-    def get_icon(self, icon_path):
+    def get_icon(self, short_cut_path):
         try:
             # ショートカットかどうかを確認し、ショートカットならターゲットを取得
-            if icon_path.lower().endswith(".lnk"):
+            if short_cut_path.lower().endswith(".lnk"):
                 shell = win32com.client.Dispatch("WScript.Shell")
-                shortcut = shell.CreateShortCut(icon_path)
+                shortcut = shell.CreateShortCut(short_cut_path)
                 icon_path = shortcut.TargetPath
 
-            large, small = win32gui.ExtractIconEx(icon_path, 0)
-            if not large:
-                raise ValueError(f"アイコンを抽出できませんでした: {icon_path}")
+                if not icon_path:
+                    logger.warning(f"not found icon: {short_cut_path}")
+                    return None
 
+            large, small = win32gui.ExtractIconEx(icon_path, 0)
             hdc = win32ui.CreateDCFromHandle(win32gui.GetDC(0))
             hbmp = win32ui.CreateBitmap()
             hbmp.CreateCompatibleBitmap(hdc, self.ico_x, self.ico_y)
@@ -46,7 +49,8 @@ class IconExtractor:
             return img
 
         except Exception as e:
-            raise RuntimeError(f"アイコンの抽出中にエラーが発生しました: {e}")
+            logger.error(f"error occurred when get icon: {e}")
+            raise Exception(f"error occurred when get icon: {e}")
 
     def get_pillow_image(self, icon_path):
         pil_img = self.get_icon(icon_path)

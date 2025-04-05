@@ -3,6 +3,7 @@ import customtkinter
 
 from app.module.application.presenter.launcher_presenter import LauncherPresenter
 from app.module.infrastructure.repository.launcher_repositpry import LauncherRepository
+from app.ui.widget.workspace_frame_widget import WorkspaceFrameWidget
 
 class SaveLauncherListWidget(customtkinter.CTkFrame):
     def __init__(self, master):
@@ -55,6 +56,7 @@ class SaveLauncherListWidget(customtkinter.CTkFrame):
             self.textbox.delete(0, tk.END)
             # こうするしかないのか？
             self.master.master.master.master.workspace_frame.setup()
+            # WorkspaceFrameWidget(self.master).setup()
 
         else:
             self.textbox_text = val["message"]

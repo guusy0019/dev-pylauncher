@@ -30,7 +30,7 @@ class FileDialogWidget(customtkinter.CTkFrame):
             width=120,
             font=FONTS,
         )
-        self.textbox.grid(row=0, column=0, padx=10, pady=20, sticky="ew")
+        self.textbox.grid(row=0, column=0, padx=10, pady=10, sticky="ew")
 
         self.button = customtkinter.CTkButton(
             master=self,
@@ -38,7 +38,7 @@ class FileDialogWidget(customtkinter.CTkFrame):
             command=self.button_select_callback,
             font=FONTS,
         )
-        self.button.grid(row=0, column=1, padx=10, pady=20)
+        self.button.grid(row=0, column=1, padx=10, pady=10)
 
         self.command_button = customtkinter.CTkButton(
             master=self,
@@ -50,7 +50,7 @@ class FileDialogWidget(customtkinter.CTkFrame):
         # カスタムコマンドが設定されている場合はボタンを表示
         if self.kwargs.get("custom_command") is not None:
             self.command_button.grid(
-                row=0, column=2, columnspan=2, pady=20, sticky="ew"
+                row=0, column=2, columnspan=2, pady=10, sticky="ew"
             )
 
     def button_select_callback(self):

@@ -7,37 +7,49 @@ from app.module.application.usecase.launcher_usecase import LauncherUsecase
 logger = logging.getLogger("launcherLogger")
 
 class LauncherPresenter:
-    launcher_path = LAUNCHER_PATH
-
 
     def __init__(self, launcher_repository: LauncherRepositoryInterface):
         self.launcher_repository = launcher_repository
 
-    def get_all_launcher_data(self) -> list[dict]:
+    def get_all_launcher_data(self, launcher_path: str | None = None) -> list[dict]:
         try:
-            launch_data =  self.launcher_repository.get_all_launcher_data(launcher_path=self.launcher_path)
+            if launcher_path is None:
+                launch_data =  self.launcher_repository.get_all_launcher_data(launcher_path=LAUNCHER_PATH)
+            else:
+                launch_data =  self.launcher_repository.get_all_launcher_data(launcher_path=launcher_path)
             return launch_data
         except Exception as e:
-            logger.error(f"error get_all_launcher_data: error: {e}, launcher_path: {self.launcher_path}")
+            logger.error(f"error get_all_launcher_data: error: {e}, launcher_path: {launcher_path}")
             return 
 
-    def save_launcher_data(self, *, key: str, launch_app_path: str) -> None:
+    def save_launcher_data(self, *, key: str, launch_app_path: str, launcher_path: str | None = None) -> None:
         try:
-            self.launcher_repository.save_launcher_data(
-                launcher_path=self.launcher_path, key=key, launch_app_path=launch_app_path
-                )
+            if launcher_path is None:
+                self.launcher_repository.save_launcher_data(
+                    launcher_path=LAUNCHER_PATH, key=key, launch_app_path=launch_app_path
+                    )
+            else:
+                self.launcher_repository.save_launcher_data(
+                    launcher_path=launcher_path, key=key, launch_app_path=launch_app_path
+                    )
         except Exception as e:
-            logger.error(f"error save_launcher_data: error: {e}, launcher_path: {self.launcher_path}, key: {key}, launch_app_path: {launch_app_path}")
+            logger.error(f"error save_launcher_data: error: {e}, launcher_path: {LAUNCHER_PATH}, key: {key}, launch_app_path: {launch_app_path}")
             return
     
-    def delete_launcher_data(self, *, key: str) -> str:
+    def delete_launcher_data(self, *, key: str, launcher_path: str | None = None) -> str:
         try:
-            return self.launcher_repository.delete_launcher_data(launcher_path=self.launcher_path, key=key)
+            if launcher_path is None:
+                return self.launcher_repository.delete_launcher_data(launcher_path=LAUNCHER_PATH, key=key)
+            else:
+                return self.launcher_repository.delete_launcher_data(launcher_path=launcher_path, key=key)
         except Exception as e:
-            logger.error(f"error delete_launcher_data: error: {e}, launcher_path: {self.launcher_path}, key: {key}")
+            logger.error(f"error delete_launcher_data: error: {e}, launcher_path: {LAUNCHER_PATH}, key: {key}")
             return
         
     def save_launcher_workspace(self, *, file_name: str, launcher_data: dict) -> dict | None:
+        """launcherのワークスペースを保存する
+        workspaceの各アプリのショートカットのパスはLAUNCHER_WORKSPACE_DIR/file_name.jsonに保存される
+        """
         if file_name == "":
             return {
                 "status": "error",

@@ -29,3 +29,12 @@ class LauncherUsecase:
     def get_all_workspace_file_names() -> list[str]:
         workspace_file_names = os.listdir(LAUNCHER_WORKSPACE_DIR)
         return [file_name.replace(".json", "") for file_name in workspace_file_names if file_name.endswith(".json")]
+    
+    @staticmethod
+    def get_all_workspace_file_paths() -> list[str]:
+        workspace_file_names = os.listdir(LAUNCHER_WORKSPACE_DIR)
+        return [os.path.join(LAUNCHER_WORKSPACE_DIR, file_name) for file_name in workspace_file_names if file_name.endswith(".json")]
+    
+    @staticmethod
+    def get_app_name_from_shortcut_path(shortcut_path: str) -> str:
+        return os.path.splitext(os.path.basename(shortcut_path))[0]

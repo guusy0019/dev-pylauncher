@@ -8,6 +8,7 @@ from app.config.settings import IMAGE_DIR
 
 from app.ui.widget.file_dialog_widget import FileDialogWidget
 from app.ui.widget.save_launcher_list_widget import SaveLauncherListWidget
+from app.module.application.usecase.launcher_usecase import LauncherUsecase
 from app.module.utility.shortcut_excuter import ShortcutExecutor
 from app.module.utility.get_shortcut_icon_utility import IconExtractor
 from app.module.application.presenter.launcher_presenter import LauncherPresenter
@@ -16,17 +17,17 @@ from app.module.infrastructure.repository.launcher_repositpry import LauncherRep
 logger = logging.getLogger("launcherLogger")
 
 class LauncherPage(customtkinter.CTkScrollableFrame):
-    def __init__(self, master):
+    def __init__(self, master, workspace_file_path: str | None = None):
         super().__init__(master, corner_radius=0, fg_color="transparent")
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
-        self.grid_columnconfigure(2, weight=1)
-        self.grid_columnconfigure(3, weight=1)
         self.launcher_repository = LauncherRepository()
         self.launcher_presenter = LauncherPresenter(self.launcher_repository)
+
+        self.workspace_file_path = workspace_file_path
         self.setup()
 
-    def setup(self, workspace_file_paths: list[str] = None):
+    def setup(self):
         # ランチャーでファイルダイアログを表示する場合の初期ディレクトリを設定
         if os.name == "nt":
             candidate_dir = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
@@ -51,6 +52,16 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         self.file_dialog.grid(
             row=0, column=0, columnspan=4, padx=10, pady=20, sticky="ew"
         )
+        
+        # ワークスペースの場合は、ワークスペースのファイル名を表示
+        if self.workspace_file_path is not None:
+            app_name = LauncherUsecase.get_app_name_from_shortcut_path(self.workspace_file_path)
+            self.workspace_label = customtkinter.CTkLabel(
+                self,
+                text=f"ワークスペース名: {app_name}",
+                font=customtkinter.CTkFont(size=18, weight="bold"),
+            )
+            self.workspace_label.grid(row=1, column=0, padx=20, sticky="ew")
 
         # self.utility_frame = customtkinter.CTkFrame(
         #     self, corner_radius=0, fg_color="transparent"
@@ -70,7 +81,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         # checkboxを使用して、アプリケーションの一括操作を実装したいが、ムズイのでいったん保留
         # self.add_utility_buttons()
 
-        if workspace_file_paths is None:
+        if self.workspace_file_path is None:
         # work space保存用のフレーム
             self.save_launcher_list_as_workspace = SaveLauncherListWidget(master=self)
             self.save_launcher_list_as_workspace.grid(
@@ -85,7 +96,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         for widget in self.launcher_list.winfo_children():
             widget.destroy()
 
-        all_launcher_dict: dict[str, str] = self.launcher_presenter.get_all_launcher_data()
+        all_launcher_dict: dict[str, str] = self.launcher_presenter.get_all_launcher_data(self.workspace_file_path)
 
         icon_extractor = IconExtractor()
         shortcut_executor = ShortcutExecutor()
@@ -97,9 +108,18 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
 
             # ショートカットのアイコンを取得
             pillow_image = icon_extractor.get_pillow_image(shortcut_path)
-            ctk_image = customtkinter.CTkImage(
-                light_image=pillow_image, dark_image=pillow_image, size=(32, 32)
-            )
+
+            if pillow_image is None:
+                ctk_image = customtkinter.CTkImage(
+                    light_image=Image.open(os.path.join(IMAGE_DIR, "common", "not_image_light.png")),
+                    dark_image=Image.open(os.path.join(IMAGE_DIR, "common", "not_image_dark.png")),
+                    size=(32, 32),
+                )
+            else:
+                ctk_image = customtkinter.CTkImage(
+                    light_image=pillow_image, dark_image=pillow_image, size=(32, 32)
+                )
+
             delete_image = customtkinter.CTkImage(
                 light_image=Image.open(os.path.join(IMAGE_DIR, "launcher", "delete_light.png")),
                 dark_image=Image.open(os.path.join(IMAGE_DIR, "launcher", "delete_dark.png")),
@@ -169,7 +189,7 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
         app_name = os.path.splitext(os.path.basename(file_path))[0]
 
         if os.path.exists(file_path):
-            self.launcher_presenter.save_launcher_data(key=app_name, launch_app_path=file_path)
+            self.launcher_presenter.save_launcher_data(key=app_name, launch_app_path=file_path, launcher_path=self.workspace_file_path)
             # textをクリア
             self.file_dialog.textbox.delete(0, tk.END)
             self.update_launcher_list()
@@ -178,5 +198,5 @@ class LauncherPage(customtkinter.CTkScrollableFrame):
 
     def delete_launcher(self, key: str):
         """指定したランチャーを削除してリストを更新"""
-        self.launcher_presenter.delete_launcher_data(key=key)
+        self.launcher_presenter.delete_launcher_data(key=key, launcher_path=self.workspace_file_path)
         self.update_launcher_list()

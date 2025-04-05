@@ -31,3 +31,10 @@ def test_get_all_workspace_file_names(launcher_repository):
     file_names = usecase.get_all_workspace_file_names()
     assert file_names != []
 
+def test_get_app_name_from_shortcut_path(launcher_repository):
+    usecase = LauncherUsecase(launcher_repository=launcher_repository)
+    app_name = usecase.get_app_name_from_shortcut_path(
+        shortcut_path="C:/ProgramData/Microsoft/Windows/Start Menu/Programs/Outlook (classic).lnk"
+        )
+    assert app_name == "Outlook (classic)"
+

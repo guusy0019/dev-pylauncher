@@ -1,4 +1,5 @@
 import customtkinter
+import logging
 from app.config.settings import USER_DATA_PATH
 from app.config.color_settings import (
     TEXT_COLOR,
@@ -15,9 +16,12 @@ from app.ui.layout.menu_layout import MenuLayout
 from app.ui.widget.workspace_frame_widget import WorkspaceFrameWidget
 from app.ui.widget.appearance_mode_widget import AppearanceModeWidget
 from app.ui.widget.scaling_option_widget import ScalingOptionWidget
+from app.ui.page.workspace_launcher_page import WorkspaceLauncherPage
 from app.ui.widget.themes_color_widget import ThemesColorWidget
 from app.module.application.usecase.userdata_usecase import UserDataUsecase
 from app.module.infrastructure.repository.userdata_repository import UserDataRepository
+
+logger = logging.getLogger("launcherLogger")
 
 class AppLayout(BaseCtkLayout):
     def __init__(self):
@@ -41,6 +45,11 @@ class AppLayout(BaseCtkLayout):
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
         self.i18n = I18n()  # 多言語対応のインスタンスを作成
+        
+        # 現在選択されているページを追跡するための変数
+        self.current_selected_page = None
+        # 現在表示中のワークスペースフレームを保持
+        self.current_workspace_frame = None
 
         self.home_frame = HomePage(self)
         self.launcher_frame = LauncherPage(self)
@@ -53,10 +62,6 @@ class AppLayout(BaseCtkLayout):
         self.side_navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.side_navigation_frame.grid(row=0, column=0, sticky="nsew")
         self.side_navigation_frame.grid_rowconfigure(5, weight=1)
-
-        # ワークスペースのフレームを配置
-        self.workspace_frame = WorkspaceFrameWidget(self.side_navigation_frame)
-        self.workspace_frame.grid(row=5, column=0, sticky="nsew")
 
         # テーマカラーのウィジェットの配置
         self.themes_color_menu = ThemesColorWidget(self.side_navigation_frame)
@@ -82,6 +87,10 @@ class AppLayout(BaseCtkLayout):
             "launcher": self.launcher_frame,
             "config": self.config_frame,
         }
+
+        # ワークスペースのフレームを配置
+        self.workspace_frame = WorkspaceFrameWidget(self.side_navigation_frame)
+        self.workspace_frame.grid(row=5, column=0, sticky="nsew")
 
         # configつけてみたが微妙なので、メニューバーでやる
         button_info_list = [
@@ -121,14 +130,30 @@ class AppLayout(BaseCtkLayout):
 
         self.select_frame_by_name("launcher")
 
-    def select_frame_by_name(self, name):
-        self.select_button(name)
+    def _clear_all_frames(self):
+        for frame_name, frame in self.frames.items():
+            frame.grid_forget()
+        
+        # ワークスペースフレームが存在する場合は非表示にして破棄
+        if self.current_workspace_frame is not None:
+            self.current_workspace_frame.grid_forget()
+            self.current_workspace_frame = None
+            logger.info("clear workspace frame")
 
+    def select_frame_by_name(self, name):
+
+        logger.info(f"select frame: {name}")
+        
+        # 現在選択されているページを更新
+        self.current_selected_page = name
+        self.select_button(name)
+        self._clear_all_frames()
+
+        # 選択されたフレームを表示
         for frame_name, frame in self.frames.items():
             if frame_name == name:
+                logger.info(f"display frame: {frame_name}")
                 frame.grid(row=0, column=1, sticky="nsew")
-            else:
-                frame.grid_forget()
 
     def select_button(self, name):
         for button_name, button in self.buttons.items():
@@ -136,3 +161,21 @@ class AppLayout(BaseCtkLayout):
             button.configure(
                 fg_color="transparent" if button_name == name else "transparent"
             )
+
+    def select_launcher_workspace(self, workspace_file_path):
+
+        logger.info(f"select workspace: {workspace_file_path}")
+        
+        # すべてのボタンの選択状態をクリア（どれも選択されていない状態に）
+        for button_name, button in self.buttons.items():
+            button.configure(fg_color="transparent")
+        
+        # すべてのフレームをクリア
+        self._clear_all_frames()
+        
+        # 新しいワークスペースフレームを作成して保持
+        self.current_workspace_frame = WorkspaceLauncherPage(self, workspace_file_path)
+        
+        # 新しいワークスペースフレームを表示
+        self.current_workspace_frame.grid(row=0, column=1, sticky="nsew")
+        logger.info(f"display workspace frame: {workspace_file_path}")
