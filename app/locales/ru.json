@@ -13,10 +13,12 @@
     "theme": "Тема"
   },
   "launch_page": {
-    "start": "Запуск",
-    "stop": "Остановить",
+    "start": "Пуск",
+    "quit": "Выход",
+    "minimize": "Свернуть",
     "delete": "Удалить",
-    "delte_all": "Удалить все",
+    "select_all": "Выбрать всё",
+    "unselect_all": "Отменить выбор",
 
     "file_dialog_select_button": "Выбрать ярлык",
     "file_dialog_save_button": "Сохранить ярлык",

@@ -14,9 +14,11 @@
   },
   "launch_page": {
     "start": "시작",
-    "stop": "중지",
+    "quit": "종료",
+    "minimize": "최소화",
     "delete": "삭제",
-    "delte_all": "모두 삭제",
+    "select_all": "모두 선택",
+    "unselect_all": "선택 해제",
 
     "file_dialog_select_button": "바로가기 선택",
     "file_dialog_save_button": "바로가기 저장",

@@ -14,9 +14,11 @@
   },
   "launch_page": {
     "start": "Iniciar",
-    "stop": "Detener",
+    "quit": "Salir",
+    "minimize": "Minimizar",
     "delete": "Eliminar",
-    "delte_all": "Eliminar todo",
+    "select_all": "Seleccionar todo",
+    "unselect_all": "Deseleccionar todo",
 
     "file_dialog_select_button": "Seleccionar acceso directo",
     "file_dialog_save_button": "Guardar acceso directo",

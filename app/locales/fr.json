@@ -14,9 +14,11 @@
   },
   "launch_page": {
     "start": "Démarrer",
-    "stop": "Arrêter",
+    "quit": "Quitter",
+    "minimize": "Réduire",
     "delete": "Supprimer",
-    "delte_all": "Tout supprimer",
+    "select_all": "Tout sélectionner",
+    "unselect_all": "Tout désélectionner",
 
     "file_dialog_select_button": "Sélectionner un raccourci",
     "file_dialog_save_button": "Enregistrer le raccourci",

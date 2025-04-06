@@ -14,9 +14,11 @@
   },
   "launch_page": {
     "start": "Start",
-    "stop": "Stop",
+    "quit": "Quit",
+    "minimize": "Minimize",
     "delete": "Delete",
-    "delte_all": "Delete All",
+    "select_all": "Select All",
+    "unselect_all": "Unselect All",
 
     "file_dialog_select_button": "Select Shortcut",
     "file_dialog_save_button": "Save Shortcut",

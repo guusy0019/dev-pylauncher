@@ -14,9 +14,11 @@
   },
   "launch_page": {
     "start": "Iniciar",
-    "stop": "Parar",
+    "quit": "Sair",
+    "minimize": "Minimizar",
     "delete": "Excluir",
-    "delte_all": "Excluir tudo",
+    "select_all": "Selecionar tudo",
+    "unselect_all": "Desmarcar tudo",
 
     "file_dialog_select_button": "Selecionar atalho",
     "file_dialog_save_button": "Salvar atalho",

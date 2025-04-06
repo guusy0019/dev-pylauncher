@@ -14,9 +14,11 @@
   },
   "launch_page": {
     "start": "Avvia",
-    "stop": "Ferma",
+    "quit": "Esci",
+    "minimize": "Minimizza",
     "delete": "Elimina",
-    "delte_all": "Elimina tutto",
+    "select_all": "Seleziona tutto",
+    "unselect_all": "Deseleziona tutto",
 
     "file_dialog_select_button": "Seleziona collegamento",
     "file_dialog_save_button": "Salva collegamento",

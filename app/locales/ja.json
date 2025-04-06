@@ -14,9 +14,11 @@
   },
   "launch_page": {
     "start": "スタート",
-    "stop": "ストップ",
+    "quit": "終了",
+    "minimize": "最小化",
     "delete": "削除",
-    "delte_all": "全削除",
+    "select_all": "全選択",
+    "unselect_all": "全解除",
 
     "file_dialog_select_button": "ショートカットを選択",
     "file_dialog_save_button": "ショートカットを保存",
