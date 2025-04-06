@@ -4,8 +4,7 @@ from cx_Freeze import setup, Executable
 
 from app.config.settings import ICON_PATH
 
-LAUNCH_MODE = os.getenv("LAUNCH_MODE", default="PROD")
-
+LAUNCH_MODE = "PROD" # DEBUG
 # バージョン
 VERSION = "1.0"
 # アプリ名
