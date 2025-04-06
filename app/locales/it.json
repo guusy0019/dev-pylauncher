@@ -48,6 +48,11 @@
   },
   "config_page": {
     "reload": "Ricarica (CTRL+R)",
-    "exit": "Esci (CTRL+Q)"
+    "exit": "Esci (CTRL+Q)",
+    "shortcut_settings": "Impostazioni scorciatoie",
+    "language_settings": "Impostazioni lingua",
+    "scaling_settings": "Impostazioni scala",
+    "theme_settings": "Impostazioni tema",
+    "appearance_settings": "Impostazioni aspetto"
   }
 }

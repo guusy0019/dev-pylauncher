@@ -48,6 +48,11 @@
   },
   "config_page": {
     "reload": "새로고침(CTRL+R)",
-    "exit": "종료(CTRL+Q)"
+    "exit": "종료(CTRL+Q)",
+    "shortcut_settings": "단축키 설정",
+    "language_settings": "언어 설정",
+    "scaling_settings": "크기 조정 설정",
+    "theme_settings": "테마 설정",
+    "appearance_settings": "외관 설정"
   }
 }

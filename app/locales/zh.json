@@ -48,6 +48,11 @@
   },
   "config_page": {
     "reload": "重新加载(CTRL+R)",
-    "exit": "退出(CTRL+Q)"
+    "exit": "退出(CTRL+Q)",
+    "shortcut_settings": "快捷键设置",
+    "language_settings": "语言设置",
+    "scaling_settings": "缩放设置",
+    "theme_settings": "主题设置",
+    "appearance_settings": "外观设置"
   }
 }

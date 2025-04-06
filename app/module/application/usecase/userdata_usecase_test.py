@@ -33,3 +33,26 @@ def test_get_workspace_file_paths():
     workspace_file_paths = launcher_usecase.get_workspace_file_paths()
     assert len(workspace_file_paths) > 0
 
+def test_get_all_available_language_json_list():
+    """利用可能な言語jsonファイル取得機能のテスト"""
+    userdata_usecase = UserDataUsecase()
+    available_language_json_list = userdata_usecase.get_all_available_language_json_list()
+    assert len(available_language_json_list) > 0
+
+def test_get_all_available_language_code_list():
+    """利用可能な言語コード取得機能のテスト"""
+    userdata_usecase = UserDataUsecase()
+    available_language_code_list = userdata_usecase.get_all_available_language_code_list()
+    assert len(available_language_code_list) > 0
+
+def test_get_all_available_language():
+    """利用可能な言語取得機能のテスト"""
+    userdata_usecase = UserDataUsecase()
+    available_language = userdata_usecase.get_all_available_language()
+    assert len(available_language) > 0
+
+def test_get_lang_code_from_lang():
+    """langからlang_code取得機能のテスト"""
+    userdata_usecase = UserDataUsecase()
+    lang_code = userdata_usecase.get_lang_code_from_lang("日本語")
+    assert lang_code == "ja"

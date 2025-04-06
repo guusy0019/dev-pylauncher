@@ -48,6 +48,11 @@
   },
   "config_page": {
     "reload": "Перезагрузить (CTRL+R)",
-    "exit": "Выход (CTRL+Q)"
+    "exit": "Выход (CTRL+Q)",
+    "shortcut_settings": "Настройки ярлыков",
+    "language_settings": "Настройки языка",
+    "scaling_settings": "Настройки масштабирования",
+    "theme_settings": "Настройки темы",
+    "appearance_settings": "Настройки внешнего вида"
   }
 }

@@ -48,6 +48,11 @@
   },
   "config_page": {
     "reload": "Reload (CTRL+R)",
-    "exit": "Exit (CTRL+Q)"
+    "exit": "Exit (CTRL+Q)",
+    "shortcut_settings": "Shortcut Settings",
+    "language_settings": "Language Settings",
+    "scaling_settings": "Scaling Settings",
+    "theme_settings": "Theme Settings",
+    "appearance_settings": "Appearance Settings"
   }
 }

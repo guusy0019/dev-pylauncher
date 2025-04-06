@@ -48,6 +48,11 @@
   },
   "config_page": {
     "reload": "Neu laden (STRG+R)",
-    "exit": "Beenden (STRG+Q)"
+    "exit": "Beenden (STRG+Q)",
+    "shortcut_settings": "Tastenkürzel-Einstellungen",
+    "language_settings": "Spracheinstellungen",
+    "scaling_settings": "Skalierungseinstellungen",
+    "theme_settings": "Design-Einstellungen",
+    "appearance_settings": "Darstellungseinstellungen"
   }
 }

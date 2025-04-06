@@ -105,13 +105,6 @@ class WorkspaceUtilityWidget(customtkinter.CTkFrame):
         button_frame = customtkinter.CTkFrame(self.confirm_dialog, fg_color="transparent")
         button_frame.pack(fill="x", pady=10)
         
-        cancel_button = customtkinter.CTkButton(
-            button_frame,
-            text=self.i18n.get_text("launch_page.save_launcher_list_dialog_cancel_button"),
-            command=self.confirm_dialog.destroy
-        )
-        cancel_button.pack(side="left", padx=20)
-
         delete_button = customtkinter.CTkButton(
             button_frame,
             text=self.i18n.get_text("launch_page.save_launcher_list_dialog_delete_button"),
@@ -119,7 +112,14 @@ class WorkspaceUtilityWidget(customtkinter.CTkFrame):
             hover_color="darkred",
             command=self.confirm_delete
         )
-        delete_button.pack(side="right", padx=20)
+        delete_button.pack(side="left", padx=20)
+        
+        cancel_button = customtkinter.CTkButton(
+            button_frame,
+            text=self.i18n.get_text("launch_page.save_launcher_list_dialog_cancel_button"),
+            command=self.confirm_dialog.destroy
+        )
+        cancel_button.pack(side="right", padx=20)
         
     def confirm_delete(self):
         self.confirm_dialog.destroy()

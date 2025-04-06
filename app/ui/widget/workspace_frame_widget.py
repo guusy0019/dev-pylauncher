@@ -18,7 +18,7 @@ class WorkspaceFrameWidget(customtkinter.CTkFrame):
         self.setup()    
 
     def setup(self):
-        self.workspace_frame = customtkinter.CTkFrame(self, corner_radius=0)
+        self.workspace_frame = customtkinter.CTkScrollableFrame(self, corner_radius=0)
         launcher_workspace_file_names: list[str] = LauncherUsecase().get_all_workspace_file_names()
         for i, file_name in enumerate(launcher_workspace_file_names):
             button = customtkinter.CTkButton(

@@ -48,6 +48,12 @@
   },
   "config_page": {
     "reload": "リロード(CTRL+R)",
-    "exit": "終了(CTRL+Q)"
+    "exit": "終了(CTRL+Q)",
+
+    "shortcut_settings": "ショートカット設定",
+    "language_settings": "言語設定",
+    "scaling_settings": "スケーリング設定",
+    "theme_settings": "テーマ設定",
+    "appearance_settings": "外観設定"
   }
 }

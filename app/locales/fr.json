@@ -48,6 +48,11 @@
   },
   "config_page": {
     "reload": "Recharger (CTRL+R)",
-    "exit": "Quitter (CTRL+Q)"
+    "exit": "Quitter (CTRL+Q)",
+    "shortcut_settings": "Paramètres de raccourci",
+    "language_settings": "Paramètres de langue",
+    "scaling_settings": "Paramètres de mise à l'échelle",
+    "theme_settings": "Paramètres de thème",
+    "appearance_settings": "Paramètres d'apparence"
   }
 }
