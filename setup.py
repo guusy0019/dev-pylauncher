@@ -1,10 +1,11 @@
-
 import os
 from cx_Freeze import setup, Executable
 
 from app.config.settings import ICON_PATH
 
-LAUNCH_MODE = "PROD" # DEBUG
+# 環境変数からモードを取得（デフォルトはPRODに設定）
+LAUNCH_MODE = os.environ.get("LAUNCH_MODE", "PROD")
+
 # バージョン
 VERSION = "1.0"
 # アプリ名
@@ -29,6 +30,7 @@ PACKAGES = [
 INCLUDE_FILES = [
     ("app/assets/", "lib/app/assets/"),
     ("app/locales/", "lib/app/locales/"),
+    ("app/config/", "lib/app/config/"),  # 設定ファイルディレクトリを追加
 ]
 
 # Pythonのソースコードファイル名

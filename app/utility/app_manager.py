@@ -12,10 +12,9 @@ def set_app(application):
     app = application
 
 def restart_app(reload_modules: bool = True):
+    # 本番環境ではモジュール再読み込みを行わず、単にアプリを再起動
     if MODE == "DEBUG" and reload_modules:
         _restart_app()
-
-        
     else:
         global app
         if app is not None:
@@ -62,4 +61,4 @@ def exit_app():
     if app is not None:
         app.quit()
         app.destroy()
-        app = None 
+        app = None
