@@ -2,7 +2,7 @@
 $ErrorActionPreference = "Stop"
 
 # 仮想環境が有効になっているか確認
-if (-not (Test-Path .\venv\Scripts\activate.ps1)) {
+if (-not (Test-Path .\.venv\Scripts\activate.ps1)) {
     Write-Host "仮想環境が見つかりません。セットアップを実行してください。" -ForegroundColor Red
     exit 1
 }
