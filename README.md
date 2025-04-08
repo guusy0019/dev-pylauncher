@@ -1,78 +1,81 @@
-# dev_windows_app
+# PyLauncher
 
-### tree
+Windows 用のショートカットランチャーアプリケーションです。ショートカットをグループ化して管理し、簡単に起動できるようにします。
 
-```
-├─app
-│  ├─assets
-│  │  ├─data
-│  │  └─images
-│  ├─config
-│  │  └─__pycache__
-│  ├─module
-│  │  ├─model
-│  │  ├─repository
-│  │  ├─service
-│  │  ├─usecase
-│  │  └─utility
-│  └─ui
-│      ├─layout
-│      │  └─__pycache__
-│      ├─page
-│      │  └─__pycache__
-│      ├─route
-│      │  └─__pycache__
-│      ├─widget
-│      │  └─__pycache__
-│      └─__pycache__
-├─build
-│  └─main
-│      └─localpycs
-├─dist
-├─docs
-├─logs
-├─scripts
-│  ├─linux
-│  └─windows
-└─venv
+## 主な機能
 
+- ショートカットの一括管理
+- ワークスペース機能によるショートカットのグループ化
+- カスタマイズ可能な UI（テーマ、スケーリング、言語設定）
+- ショートカットの一括起動・停止
+- 多言語対応（日本語、英語）
+
+## インストール方法
+
+1. リポジトリをクローン
+
+```bash
+git clone https://github.com/your-username/pylauncher.git
+cd pylauncher
 ```
 
-```shell
-Python -V 3.12.5
+2. 仮想環境を作成して有効化
+
+```bash
+python -m venv .venv
+.\.venv\Scripts\activate
 ```
 
-```mermaid
-graph TD
-    %% メインの階層
-    subgraph "アーキテクチャ"
-        subgraph "UI"
-            layout["layout"]
-            page["page"]
-            layout --> page
-        end
+3. 依存関係をインストール
 
-        subgraph "infrastracture"
-            repository["repository"]
-        end
-
-        subgraph "application"
-            usecase["usecase"]
-            interface["interface"]
-        end
-
-        subgraph "domain"
-            model["model"]
-        end
-    end
-
-    %% レイヤー間の接続
-    page --> usecase
-    repository -.-> interface
-    usecase --> model
-    repository -- DI --> page
+```bash
+pip install -r requirements.txt
 ```
 
-### 参考にしたレイアウトのコード
+4. アプリケーションを起動
 
-[公式の example](https://github.com/TomSchimansky/CustomTkinter/blob/master/examples/image_example.py)
+```bash
+python main.py or F5
+```
+
+## 使用方法
+
+1. ショートカットの追加
+
+   - 「ショートカットを選択」ボタンから追加したいショートカットを選択
+   - ショートカット名を入力して保存
+
+2. ワークスペースの作成
+
+   - 複数のショートカットをグループ化して管理
+   - ワークスペース名を付けて保存
+
+3. ショートカットの起動
+
+   - 個別に起動
+   - チェックボックスで複数選択して一括起動
+
+4. 設定
+   - テーマの変更
+   - スケーリングの調整
+   - 言語の切り替え
+
+## 開発環境
+
+- Python 3.12
+- customtkinter
+- cx_Freeze（ビルド用）
+
+## ライセンス
+
+MIT License
+
+## 作者
+
+[guusy0019]
+
+## バージョン履歴
+
+- v1.0.0 (2024-04-06)
+  - 初期リリース
+  - 基本的な機能の実装
