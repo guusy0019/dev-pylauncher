@@ -2,6 +2,8 @@
 
 Windows 用のショートカットランチャーアプリケーションです。ショートカットをグループ化して管理し、簡単に起動できるようにします。
 
+![基本ページ](./images/base_page.png)
+
 ## 主な機能
 
 - ショートカットの一括管理
@@ -46,6 +48,7 @@ python main.py or F5
    - ショートカット名を入力して保存
 
 2. ワークスペースの作成
+   ![ワークスペースページ](./images/workspace_page.png)
 
    - 複数のショートカットをグループ化して管理
    - ワークスペース名を付けて保存
@@ -56,6 +59,7 @@ python main.py or F5
    - チェックボックスで複数選択して一括起動
 
 4. 設定
+   ![代替テキスト](./images/config_page.png)
    - テーマの変更
    - スケーリングの調整
    - 言語の切り替え
@@ -65,10 +69,6 @@ python main.py or F5
 - Python 3.12
 - customtkinter
 - cx_Freeze（ビルド用）
-
-## ライセンス
-
-MIT License
 
 ## 作者
 
