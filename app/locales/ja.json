@@ -10,7 +10,8 @@
     "settings": "設定",
     "systm": "システム",
     "scaling": "スケーリング",
-    "theme": "テーマ"
+    "theme": "テーマ",
+    "usage": "使い方"
   },
   "launch_page": {
     "start": "スタート",
@@ -57,5 +58,51 @@
     "scaling_settings": "スケーリング設定",
     "theme_settings": "テーマ設定",
     "appearance_settings": "外観設定"
+  },
+  "usage_page": {
+    "title": "PyLauncher 使い方ガイド",
+    "basic_operation": {
+      "title": "基本操作",
+      "add_shortcut": {
+        "title": "1. ショートカットの追加",
+        "content": [
+          "- 「ショートカットを選択」ボタンから追加したいショートカットを選択",
+          "- ショートカット名を入力して保存"
+        ]
+      },
+      "create_workspace": {
+        "title": "2. ワークスペースの作成",
+        "content": [
+          "- 複数のショートカットをグループ化して管理",
+          "- ワークスペース名を付けて保存"
+        ]
+      },
+      "launch_shortcut": {
+        "title": "3. ショートカットの起動",
+        "content": ["- 個別に起動", "- チェックボックスで複数選択して一括起動"]
+      }
+    },
+    "settings": {
+      "title": "設定",
+      "theme": {
+        "title": "1. テーマ設定",
+        "content": ["- ライト/ダークモードの切り替え", "- カラーテーマの変更"]
+      },
+      "scaling": {
+        "title": "2. スケーリング設定",
+        "content": ["- UIのサイズを調整"]
+      },
+      "language": {
+        "title": "3. 言語設定",
+        "content": ["- 日本語/英語の切り替え"]
+      }
+    },
+    "shortcut_keys": {
+      "title": "ショートカットキー",
+      "content": [
+        "Ctrl + R: アプリケーションのリロード",
+        "Ctrl + Q: アプリケーションの終了"
+      ]
+    }
   }
 }

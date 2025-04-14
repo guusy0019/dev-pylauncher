@@ -41,6 +41,12 @@ class BaseCtkLayout(customtkinter.CTk):
             size=(20, 20),
         )
 
+        self.usage_icon = customtkinter.CTkImage(
+            light_image=Image.open(os.path.join(IMAGE_DIR, "usage", "usage_light.png")),
+            dark_image=Image.open(os.path.join(IMAGE_DIR, "usage", "usage_dark.png")),
+            size=(20, 20),
+        )
+
     def reload_window(self):
         restart_app()
 

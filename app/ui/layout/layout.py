@@ -19,6 +19,7 @@ from app.ui.page.workspace_launcher_page import WorkspaceLauncherPage
 from app.ui.widget.themes_color_widget import ThemesColorWidget
 from app.module.application.usecase.userdata_usecase import UserDataUsecase
 from app.module.infrastructure.repository.userdata_repository import UserDataRepository
+from app.ui.page.usage_page import UsagePage
 
 logger = logging.getLogger("launcherLogger")
 
@@ -49,9 +50,9 @@ class AppLayout(BaseCtkLayout):
         # 現在表示中のワークスペースフレームを保持
         self.current_workspace_frame = None
 
-        self.home_frame = HomePage(self)
-        self.launcher_frame = LauncherPage(self)
-        self.config_frame = ConfigPage(self)
+        # self.home_frame = HomePage(self)
+        # self.launcher_frame = LauncherPage(self)
+        # self.config_frame = ConfigPage(self)
 
         # メニューバーを配置
         # self.menu_layout = MenuLayout(self)
@@ -81,9 +82,10 @@ class AppLayout(BaseCtkLayout):
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
         self.frames = {
-            "home": self.home_frame,
-            "launcher": self.launcher_frame,
-            "config": self.config_frame,
+            "home": HomePage(self),
+            "launcher": LauncherPage(self),
+            "config": ConfigPage(self),
+            "usage": UsagePage(self),
         }
 
         # ワークスペースのフレームを配置
@@ -95,6 +97,7 @@ class AppLayout(BaseCtkLayout):
             {"name": "home", "text": self.i18n.get_text("side_menu.home"), "icon": self.home_icon},
             {"name": "launcher", "text": self.i18n.get_text("side_menu.launcher"), "icon": self.launcher_icon},
             {"name": "config", "text": self.i18n.get_text("side_menu.settings"), "icon": self.config_icon},
+            {"name": "usage", "text": self.i18n.get_text("side_menu.usage"), "icon": self.usage_icon},
         ]
         self.button_info_list = []
         # 開発モードの場合のみhomeを表示

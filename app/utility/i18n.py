@@ -45,7 +45,7 @@ class I18n:
 
         logger.info(f"language_code: {language_code}. locale_file_path: {locale_file}")
 
-    def get_text(self, key: str) -> str:
+    def get_text(self, key: str) -> str | list[str]:
         """
         ドット表記で階層的にアクセスするメソッド
         例: get_text("menu.settings") は self.locale_data["menu"]["settings"] の値を返す
@@ -59,11 +59,11 @@ class I18n:
                 # キーが存在しない場合はキー名をそのまま返す
                 return key
         
-        # 最終的な値が辞書でなければその値を返す
-        if isinstance(current_data, str):
+        # 最終的な値が文字列またはリストの場合はその値を返す
+        if isinstance(current_data, (str, list)):
             return current_data
         else:
-            # 辞書の場合はキー名をそのまま返す
+            # それ以外の場合はキー名をそのまま返す
             return key
     
     def get_section(self, section_key: str = None) -> Dict[str, Any]:
